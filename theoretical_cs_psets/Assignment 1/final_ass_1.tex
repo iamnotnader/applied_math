@@ -1,0 +1,318 @@
+% Use this template to write your solutions
+
+\documentclass[12pt]{article}
+\usepackage{slashbox}
+% Set the margins
+%
+\setlength{\textheight}{8.5in}
+\setlength{\headheight}{.25in}
+\setlength{\headsep}{.25in}
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+
+% Macros
+\newcommand{\myN}{\hbox{N\hspace*{-.9em}I\hspace*{.4em}}}
+\newcommand{\myZ}{\hbox{Z}^+}
+\newcommand{\myR}{\hbox{R}}
+
+\newcommand{\myfunction}[3]
+{${#1} : {#2} \rightarrow {#3}$ }
+
+\newcommand{\myzrfunction}[1]
+{\myfunction{#1}{{\myZ}}{{\myR}}}
+
+
+% Formating Macros
+
+\newcommand{\myheader}[4]
+{\vspace*{-0.5in}
+\noindent
+{#1} \hfill {#3}
+
+\noindent
+{#2} \hfill {#4}
+
+\noindent
+\rule[8pt]{\textwidth}{1pt}
+
+\vspace{1ex} 
+}  % end \myheader 
+
+\newcommand{\myalgsheader}[0]
+{\myheader
+{ {\bf{COS 340}} }
+{ {\bf{Spring 2012}} }
+{ {\bf{Collaborator 1}} : Diao, Lawrence }
+{ {\bf{Collaborator 2}} : last name, first name}
+}
+
+% Running head (goes at top of each page, beginning with page 2.
+% Must precede by \pagestyle{myheadings}.
+\newcommand{\myrunninghead}[2]
+{\markright{{\it {#1}, {#2}}}}
+
+\newcommand{\myrunningalgshead}[2]
+{\myrunninghead{COS 340 }{{#1}}}
+
+\newcommand{\myrunninghwhead}[2]
+{\myrunningalgshead{Solution to HW {#1}, Problem {#2}}}
+
+\newcommand{\mytitle}[1]
+{\begin{center}
+{\large {\bf {#1}}}
+\end{center}}
+
+\newcommand{\myhwtitle}[3]
+{\begin{center}
+{\large {\bf Solution to HW {#1}, Problem {#2}}}\\
+\medskip 
+{\it {#3}} % Name goes here
+\end{center}}
+
+\newcommand{\mysection}[1]
+{\noindent {\bf {#1}}}
+
+%%%%%% Begin document with header and title %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{1}{1}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+Let $S = \{1,2, ...,n\}$. How many ordered pairs $(A,B)$ of subsets of S are there that satisfy $A \subseteq B$?
+\newline
+\newline
+Let $B_k$ consist of the subsets of $S$ that contain exactly $k$ elements. If we fix $k$, then $|B_k| = $$n \choose k$ since there are
+$n \choose k$ different ways to choose $k$ elements from a set of $n$. Now, each of these $k$ element subsets of $S$ has $2^k$ subsets of its
+own, a fact we showed in class. So if we wish to enumerate all tuples $(A_{j}, B_{k,i})$ such that $A_{j} \subseteq B_{k,i}$ for some set $A_j$ with $B_{k,i} \in B_k$, then
+there will be $2^k \times $$n \choose k$ of them since there are $n \choose k$ elements in the set $B_k$ and each one has
+$2^k$ subsets. We get the quantity we want by summing over $k$. $\sum_{k=0}^n 2^n \times $$n \choose k$$ = $$\sum_{k=0}^n 2^n \times 1^{n-k} $$n \choose k$
+$ = $$3^n$ tuples of $(A,B)$ such that $A, B \subseteq S$ and $A \subseteq B$.
+\newline
+\newline
+Another way to think about this is to consider the the set of all strings of length $n$ having the numbers $0$, $1$, or $2$ as digits. By the 
+generalized product rule, there are $3 \time 3 \times ... \times 3$ = $3^n$ of these strings. Now, if we think of each digit in one of these
+strings as representing an element of the set $S$ and having it take on the digit $0$ as meaning the element is in set $S$ but not in
+sets $A or B$, the digit $1$ as representing the element being in $B$ but not in $A$, and the digit $2$ as representing the element being
+in both $A and B$, then we see that these strings have a one-to-one mapping to tuples $(A, B)$ from above and, by the bijection rule,
+that there are $3^n$ of these tuples.
+% end Solution 
+
+\pagebreak
+\myalgsheader
+\pagestyle{plain}
+\myhwtitle{1}{2}{Al-Naji, Nader}
+\bigskip
+% begin Solution
+Prove that given $n > 0$ and a set of $n+1$ positive integers, none of them exceeding $2n$, there is at least one integer in this set that divides 
+another integer in this set.
+\newline
+\newline
+First, note that all even integers can be written in the form $k \times 2^b$ for some b where k is an odd number smaller than the integer itself and $b >= 0$. To see this, note that a factor that is even can always be made odd by pulling out a two. So consider all pairs of the form $(k, ak)$ where $k$ is an odd number and $a$ has the form $2^b$ for some $b \geq 0$. In a set of 2n numbers with $n > 0$, there are
+n different values that k can take on, one for each of the odd numbers in the set of numbers $[0,2n]$. Further, note that every number in the set $[0,2n]$ belongs to exactly one of
+these n different groups: a number is either odd, in which case it has its own group where it is the leftmost part of the tuple, or a number is even, in which case it can be broken down
+into a multiple of $2^b$ and a distinct odd number $k$ and put into the $k^{th}$ group as the rightmost part of the tuple. Finally, note that if two numbers are in the same
+group, then one of them divides the other. Since there are only $n$ different groups in a set of $2n$ numbers, then by the pigeonhole principle, selecting a set of $n+1$ numbers from
+this set results in at least one collision with two of the numbers being in the same group and, therefore, one number dividing another. 
+% end Solution
+
+% end Solution
+\pagebreak
+\myalgsheader
+\pagestyle{plain}
+\myhwtitle{1}{3}{Al-Naji, Nader}
+\bigskip
+% begin Solution
+A chocolate bar consists of $n \times m$ (where $n,m \geq 1$) square pieces arranged in a rectangle. The square in the upper left corner is poisoned. Two players (Alice and Bob)
+are taking turns breaking the bar into two rectangular bars along the lines, and eating the non-poisoned part. The player left with the lone poisoned piece loses the game.
+Alice makes the first move. 
+\newline
+\newline
+(a) For each pair $1 \leq n,m \leq 5$ which player has the winning strategy?
+\newline
+\newline
+\begin{tabular}{r|ccccc}
+\backslashbox[10pt][l]{n}{m} & 1 & 2 & 3 & 4 & 5\\\hline
+1 & Bob & Alice & Alice & Alice & Alice\\
+2 & Alice & Bob & Alice & Alice & Alice\\
+3 & Alice & Alice & Bob & Alice & Alice\\
+4 &	Alice	&	Alice  & Alice		& Bob & Alice\\
+5 &	Alice	&	Alice  & Alice		& Alice& Bob
+\end{tabular} 
+\newline
+\newline
+The $1 \times 1$ case is trivial: Alice loses automatically. With any $n \times 1$ bar, Alice can turn the bar into a $1 \times 1$ and force Bob to lose so she 
+wins the rest. If the bar is a $2 \times 2$, then all of Alice's move result in her losing since Bob can immediately turn the bar into a $1 \times 1$. With all the other $n \times 2$ moves, Alice can turn the bar into 
+a square and force Bob to lose. Alice wins the $3 \times 1$ and $3 \times 2$ case by symmetry. With the $3 \times 3$ case, again all of her moves result in an 
+automatic loss since Bob can immediately turn it into a $2 \times 2$ or $1 \times 1$ and force a loss. With the rest of the $n \times 3$, Alice can turn the bar
+into a $3 \times 3$ for Bob and force him to lose. The first $3$ of the $n \times 4$ case come by symmetry again and $4 \times 4$ results in a loss since Bob can
+immediately turn the bar into a $k \times k$ and force Alice to lose. Alice wins the $4 \times 5$ bar by turning it into a $4 \times 4$ for Bob. Finally, the
+first $4$ of the $n \times 5$ case come by symmetry. In the $5 \times 5$ case Alice loses because Bob can turn the bar into a square after her turn, which makes
+her lose.
+\newline
+\newline
+(b) Who has the winning strategy for arbitrary $n,m \geq 1$? Prove your answer.
+\newline
+\newline
+If $n = m$, Bob; otherwise Alice.
+\newline
+\newline
+Proof: 
+\newline
+First note that a move in the game serves only to decrement a single dimension $n $ or $m$ of the bar, but never both dimensions simultaneously, since
+the lines are horizontal and vertical and breaking one of these lines has no effect on the bar's size along the line perpendicular to it. Now,
+let:
+\newline
+\newline
+$P(n) = $ ``if the bar is $n \times m$ with $n = m$ and it is player one's turn, player two wins. Otherwise, if $n < m$ and it is player two's turn, player two wins.''
+\newline
+Note that we use $n < m$ in the second half instead of $n \neq m$ because otherwise $P(n)$ where $n = a$ and $m = b$, and $P(m)$ where $n = b$ and $m = a$ , would be saying the same thing whereas here they are two distinct cases. Also note that this statement
+is symmetric where player one is the person whose turn it is to make a move, i.e. player one could be Alice or Bob depending on whose turn it is.
+\newline
+\newline
+\textbf{Base}: $P(n) = 1$
+\newline
+\newline
+If $n = m = 1$ and it is Alice's turn, then Bob wins since Alice has to eat the poison piece automatically. 
+\newline
+\newline
+Otherwise, if $n \neq m$, then 
+$m > 1$, since $m$ can't be less than 1, and Alice could decrement $m$ on her move to $1$ and force an automatic loss for Bob.
+\newline
+\newline
+\textbf{Step}: assume $P(1), ... , P(n)$ is true. Need to show $P(n+1)$ is true.
+\newline
+\newline
+For the case of an $m_1 \times n+1$ bar, where $m_1 = n+1$ and it is Alice's turn, Alice has to make a move and, therefore, decrement either dimension. By symmetry, it
+doesn't matter which dimension she chooses to decrement, but when she does make her move she will generate an  $m_2 \times n+1$ square with $m_2 < n+1$ and $m_2 \in [0,n]$ and
+hand this square over to Bob. Now Bob will be given an $m_2 \times n+1$ where $m_2 < n+1$ and $m_2 \in [0,n]$ and will win by $P(m_2)$ which we assume is true.
+\newline
+\newline
+For the case of an $m_1 \times n+1$ bar, where $m_1 > n+1$ and it is Alice's turn, Alice can choose to decrement $m_1$ down to $n+1$ and hand over an $(n+1) \times (n+1)$ sized square over to 
+Bob. Bob will then lose by the statement above for $m_1 = n+1$.
+% end Solution
+
+% end Solution
+\pagebreak
+\myalgsheader
+\pagestyle{plain}
+\myhwtitle{1}{4}{Al-Naji, Nader}
+\bigskip
+% begin Solution
+
+Arrange the following functions in increasing order of growth rate, so that for two consecutive functions $f(n), g(n)$ in your sequence, either $f(n) = o(g(n)) or f(n) = Theta(g(n)).$
+Explain the relationships of all the adjacent pairs of functions in your order. Assume here that log is a logarithm to base 2 and ln is a logarithm to base $e$.
+\begin{center}
+\Large $n!$  $\log n$  $\log n^2$  $n^{10}$  $\ln n$  $n \choose 10$  $2^{\log n}$  $2^{\ln^2 n}$  $(\log n)^n$  $n^{(\log n)}$
+\end{center}
+The following is a proper ordering as will be shown:
+\begin{center}
+\Large $\ln n$ $\log n$ $\log n^2$ $2^{\log n}$ $n \choose 10$ $n^{10}$ $2^{\ln^2 n}$ $n^{(\log n)}$ $(\log n)^n$ $n!$
+\end{center}
+\section{$\log n$ = $\Theta(\ln n)$}
+$\lim_{n\to\infty} \frac{\ln n}{\log n} = \lim_{n\to\infty} \ln n \times \frac{\ln 2}{\ln n} = \lim_{n\to\infty} \ln 2 = \ln 2$
+\newline
+Because $\lim_{n\to\infty} \frac{\ln n}{\log n} \neq 0 \Rightarrow \ln n \neq o(\log n)$
+\newline
+and $\lim_{n\to\infty} \frac{\ln n}{\log n} \neq \infty \Rightarrow \ln n \neq \omega(\log n)$,
+\newline
+$\log n$ = $\Theta(\ln n)$
+\section{$\log n^2$ = $\Theta(\log n)$}
+$\lim_{n\to\infty} \frac{\log n}{\log n^2} = \lim_{n\to\infty} \frac{\log n}{2 \times \log n} = \frac{1}{2}$
+\newline
+Because $\lim_{n\to\infty} \frac{\log n}{\log n^2} \neq 0 \Rightarrow \log n \neq o(\log n^2)$
+\newline
+and $\lim_{n\to\infty} \frac{\log n}{\log n^2} \neq \infty \Rightarrow \log n \neq \omega(\log n^2)$,
+\newline
+$\log n$ = $\Theta(\ln n)$
+\section{$\log n^2$ = $o(2^{\log n})$}
+$\lim_{n\to\infty} \frac{\log n^2}{2^{\log n}} = 2 \times \lim_{n\to\infty} \frac{\log n}{n} = \frac{2}{\ln 2} \lim_{n\to\infty} \frac{\ln n}{n}$
+\newline
+We will use L'Hopital's rule. First, note that $\lim_{n\to\infty} \log n = \lim_{n\to\infty} \log n  = \infty$
+and that $\frac{d}{dn} n = 1 \neq 0$ so L'Hopital's rule will hold. Applying it we get:
+\newline
+$\lim_{n\to\infty} \frac{\frac{d}{dn}\ln n}{\frac{d}{dn}n} = \lim_{n\to\infty} \frac{1}{n} = 0$ and $\lim_{n\to\infty} \frac{\log n^2}{2^{\log n}} = 0$
+\newline
+Thus, by the definition of $f(n) = o(g(n))$, $\log n^2$ = $o(2^{\log n})$.
+\newline
+\section{$2^{\log n}$ = $o($$n \choose {10}$$)$}
+$\lim_{n\to\infty} \frac{2^{\log n}}{{n \choose {10}}} = \lim_{n\to\infty} \frac{n (n-10)! 10!}{n!}$
+\newline
+$ = \lim_{n\to\infty} \frac{n \times 10! \times (n-10)(n-11)...}{ (n)(n-1)(n-2)(n-3)(n-4)(n-5)(n-6)(n-7)(n-8)(n-9)(n-10)(n-11)...}$
+\newline
+$ = \lim_{n\to\infty} \frac{n \times 10!}{(n)(n-1)(n-2)(n-3)(n-4)(n-5)(n-6)(n-7)(n-8)(n-9)}$
+\newline
+$= \lim_{n\to\infty} \frac{10!}{(n-1)(n-2)(n-3)(n-4)(n-5)(n-6)(n-7)(n-8)(n-9)} = 0$
+\newline
+Thus, by the definition of $f(n) = o(g(n))$, $2^{\log n}$ = $o($$n \choose {10}$$)$.
+\section{$n \choose {10}$ = $\Theta(n^{10})$}
+$\lim_{n\to\infty} \frac{n^{10}}{{n \choose {10}}} = \lim_{n\to\infty} \frac{n^{10} (n-10)! 10!}{n!}$
+\newline
+$ = \lim_{n\to\infty} \frac{n^{10} \times 10! \times (n-10)(n-11)...}{ (n)(n-1)(n-2)(n-3)(n-4)(n-5)(n-6)(n-7)(n-8)(n-9)(n-10)(n-11)...}$
+\newline
+$ = \lim_{n\to\infty} \frac{n^{10} \times 10!}{(n)(n-1)(n-2)(n-3)(n-4)(n-5)(n-6)(n-7)(n-8)(n-9)}$
+\newline
+$= \lim_{n\to\infty} \frac{n^{10} \times 10!}{-362880 n + 1026576 n^2 - 1172700 n^3 + 723680 n^4 - 269325 n^5 + 
+ 63273 n^6 - 9450 n^7 + 870 n^8 - 45 n^9 + n^{10}}$
+\newline
+$= \lim_{n\to\infty} \frac{3628800 \times n^{10}}{n^{10} + ... - 362880 n} = 3628800$
+\newline
+\newline
+Because $\lim_{n\to\infty} \frac{n^{10}}{{n \choose {10}}} \neq 0 \Rightarrow n^{10} \neq $ $o($$n \choose {10}$$)$
+\newline
+and $\lim_{n\to\infty} \frac{n^{10}}{{n \choose {10}}} \neq \infty \Rightarrow n^{10} \neq $ $\omega($$n \choose {10}$$)$,
+\newline
+${n \choose {10}}$ = $\Theta(n^{10})$
+\section{$n^{10}$ = $o(2^{\ln^2 n})$}
+First not that: $2^{\ln^2 n} = 2^{(\ln n)(\ln n)} = 2^{(\frac{\log n}{\log e})(\ln n)} = 2^{(\log n)(\frac{\ln n}{\log e})} = n^{\frac{\ln n}{\log e}}$
+\newline
+$\lim_{n\to\infty} \frac{n^{10}}{n^{\frac{\ln n}{\log e}}} = \lim_{n\to\infty} n^{10 - \frac{\ln n}{\log e}} = 0$
+\newline
+Thus, by the definition of $f(n) = o(g(n))$, $n^{10}$ = $o(2^{\ln^2 n})$
+\section{$2^{\ln^2 n} = o(n^{\log n})$}
+$\lim_{n\to\infty} \frac{n^{\frac{\ln n}{\log e}}}{n^{\log n}} = \lim_{n\to\infty} n^{\frac{\ln n}{\log e} - \log n} = \lim_{n\to\infty} n^{\frac{\ln n}{\log e} - \frac{\ln n}{\ln 2}}$
+$= \lim_{n\to\infty} n^{\ln n \times (\frac{1}{\log e} - \frac{1}{\ln 2})}$
+\newline
+Note that: $\frac{1}{\log e} < \frac{1}{\ln 2}$  so...
+\newline
+$\lim_{n\to\infty} n^{\ln n \times (\frac{1}{\log e} - \frac{1}{\ln 2})} = 0$
+\newline
+Thus, by the definition of $f(n) = o(g(n))$, $2^{\ln^2 n} = o(n^{\log n})$
+\section{$n^{\log n} = o((\log n)^n)$}
+The root test states that a series with positive terms $\sum a_n$ will converge, which is the same as saying $\lim_{n\to\infty} a_n = 0$,
+if $\sqrt[n]{a_n} < 1$. We will use this test here to show that $\lim_{n\to\infty} \frac{n^{\log n}}{(\log n)^n} = 0$.
+\newline
+\newline
+$\lim_{n\to\infty} \sqrt[n]{\frac{n^{\log n}}{(\log n)^n}} = \lim_{n\to\infty} \frac{n^{\frac{\log n}{n}}}{(\log n)} = \lim_{n\to\infty} \frac{1}{\log n} = 0 < 1$
+\newline
+$\Rightarrow \lim_{n\to\infty} \frac{n^{\log n}}{(\log n)^n} = 0$
+\newline
+\newline
+Thus, by the definition of $f(n) = o(g(n))$, $n^{\log n} = o((\log n)^n)$
+\section{$(\log n)^n = o(n!)$}
+Here we can use the ratio test to show that $\frac{f(n)}{g(n)}$ is monotonically decreasing as $n$ grows and, therefore, converges to zero as $n$ goes to infinity.
+\newline
+\newline
+We want to show that: $\lim_{n\to\infty} \frac{\frac{f(n+1)}{g(n+1)}}{\frac{f(n)}{g(n)}} < 1$.
+$= \lim_{n\to\infty} \frac{\frac{(\log n+1)^{n+1}}{(n+1)!}}{\frac{(\log n)^n}{n!}} = \lim_{n\to\infty} \frac{(\log n+1)^{n+1}}{(\log n)^n n}$
+\newline
+$\approx \lim_{n\to\infty} \frac{(\log n)^{n+1}}{(\log n)^n n} = \lim_{n\to\infty} \frac{(\log n)}{n} = 0 < 1$ (using part $3$ from above)
+\newline
+\newline
+So we have:
+\newline
+$\lim_{n\to\infty} \frac{(\log n)^n}{n!} = 0$ and, therefore,
+\newline
+by the definition of $f(n) = o(g(n))$, $(\log n)^n = o(n!)$. 
+% end Solution
+
+\end{document}

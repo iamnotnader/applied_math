@@ -1,0 +1,208 @@
+%% LyX 2.0.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=0.75in,bmargin=0.75in,lmargin=0.75in,rmargin=1in}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\thispagestyle{empty}
+
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}lr}
+\textbf{ID:} 03 & \textbf{Collaborator \#1:} Last Name, First Name\tabularnewline
+\textbf{Name:} Al-Naji, Nader & \textbf{Collaborator \#2:} Last Name, First Name\tabularnewline
+\hline 
+\end{tabular*}
+
+\medskip{}
+
+
+\begin{center}
+\begin{Large}\textbf{Solution to HW 8, Problem 1}\end{Large}
+\par\end{center}
+
+\begin{center}
+\begin{large}\textbf{COS 340 - Spring 2012}\end{large}
+\par\end{center}
+
+\bigskip{}
+
+
+% Begin sol%
+Decide whether each of the following statements is true or false. If it is true, give a proof. If it is false, give a counterexample.
+\newline
+\newline
+\textbf{True or false? In every instance of the stable matching problem, there is a stable matching containing a pair $(m, w)$ such that $m$ is ranked first on the preference list of $m$ and $w$ is ranked first on the preference list of $m$.}
+\newline
+\newline
+False. To see this, we can simply specify a case where this is false by construction. Consider two persons $A, B$ that are to be paired with two other persons $C, D$. Now, let $A$'s preferences be such that she prefers $C, D$ in that order and let $B$'s preferences be such that she prefers $D, C$ in that order. Now if we let $C$'s preferences be such that $A$ is not his top choice and $D$'s preferences be such that $B$ is not his top choice, then we know no such a matching can exist. So let $C$'s preferences be $B, A$ and let $D$'s preferences be $A, B$. Clearly it is impossible to find a matching where the above constraint is true since we have constructed this scenario such that nobody's top choice prefers them. But just to be \frac{rigorous, we will enumerate all the cases:
+\newline
+\newline
+$A-C$: Here $A$ is not $C$'s top choice.
+\newline
+$A-D$: Here $D$ is not $A$'s top choice.
+\newline
+$B-C$: Here $C$ is not $B$'s top choice.
+\newline
+$B-D$: Here $B$ is not $D$'s top choice.
+\newline
+\newline
+Thus, having exhaustively enumerated all possible matchings and shown the claim is false for them in this scenario, we conclude that this case constitutes a counterexample to the above claim.
+\newline
+\newline
+\textbf{True or false? Consider an instance of the stable matching problem in which there exists a man $m$ and a woman $w$ such that $m$ is ranked first on the preference list of $w$ and $w$ is ranked first on the preference }{denominator}list of $m$. Then in every stable matching $S$ for this instance, the pair $(m, w)$ belongs to $S$}.
+\newline
+\newline
+True. Consider the case where $m$ and $w$ are not paired with one another. That is, say that $m-a$ and $w-b$ are the current pairings. If this is the case, then we have that $m$ prefers $w$ over his current partner by construction and $w$ prefers $m$ over her current partner by construction, the definition of a blocking pair, implying that the matching is unstable-- a contradiction. Putting $m$ and $w$ together would remove the blocking pair since they prefer each other over everyone else and, thus, we conclude that, in any stable matching, $m$ and $w$ must be paired or else we will have a blocking pair and the matching will be unstable.
+% End sol%
+
+\pagebreak{}
+
+\thispagestyle{empty}
+
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}lr}
+\textbf{ID:} 03 & \textbf{Collaborator \#1:} Last Name, First Name\tabularnewline
+\textbf{Name:} Al-Naji, Nader & \textbf{Collaborator \#2:} Last Name, First Name\tabularnewline
+\hline 
+\end{tabular*}
+
+\medskip{}
+
+
+\begin{center}
+\begin{Large}\textbf{Solution to HW 8, Problem 2}\end{Large}
+\par\end{center}
+
+\begin{center}
+\begin{large}\textbf{COS 340 - Spring 2012}\end{large}
+\par\end{center}
+
+\bigskip{}
+
+
+% Begin sol%
+Consider a bipartite graph $G$ where all vertices have degree exactly $d$.
+\newline
+\newline
+1. Prove that $G$ has a perfect matching.
+\newline
+\newline
+Recall that Hall's Theorem states that there exists a matching of vertices in a set $U$ to vertices in a set $V$ in a graph $G$ if and only if for all subsets of vertices $s \subseteq U$, $|N(s)| \geq |s|$ where $|N(s)|$ is the neighbor set of $s$. So all we need to show is that $|N(s)| \geq |s| \mbox{ } \forall \mbox{ } s \subseteq U$. To do this, we consider two cases:
+\newline
+\newline
+Case 1: $|s| \leq d$
+\newline
+\newline
+If this is the case, then it is trivially true that $|N(s)| \geq |s|$ since the out-degree of every vertex in $s$ is $d$, which implies that the size of the neighbor set of each vertex in $s$, $|N(s)|$, is at least $d \geq s$, which implies that the size of the neighbor set of all the vertices in $s$ at least $|s|$.
+\newline
+\newline
+Case 2: $|s| > d$
+\newline
+\newline
+If this is the case, then we show that $|N(s)| \geq |s|$ by pigeonhole. Consider the number of edges extending out from all of the vertices in $s$ combined. This number is $e = d\cdot|s|$ by the fact that the degree of each vertex is $d$. Now, noting that all of these edges must be absorbed by vertices each with degree $d$ in the opposite partite set, we see that the minimum number of unique vertices that can absorb these edges is $e/d = |s|$. Thus, the minimum number of unique vertices a set of $s$ vertices can connect to in the opposite partite set is $|N(s)| \geq |s|$.
+\newline
+\newline
+Finally, we note that, for the set of vertices in each partite set $U$ and $V$ respectively, we have: 
+\newline
+\newline
+$\sum\limits_{v_u \in U} deg_{v_u} = d \cdot |U| = 2e = \sum\limits_{v_v \in V} deg_{v_v} = d \cdot |V| \rightarrow d \cdot |U| = d \cdot |V| \rightarrow |U| = |V|$. 
+\newline
+\newline
+Thus, having shown that $|N(s)| \geq |s|$ for both of these exhaustive cases, we conclude that $|N(s)| \geq |s|$ for this kind of graph in general and, therefore, by Hall's theorem, conclude that there is always a matching for a bitartite graph $G$ with degree $d$ at each vertex between one partite set $U$ and another partite set $V$. Further, because $|U| = |V|$, this matching is also perfect since every vertex in one set will connect to one and only one vertex in the other set, since the size of the sets are the same. And thus, $G$ must have a perfect matching.
+\newline
+\newline
+2. Prove that the set of edges of $G$ can be decomposed into $d$ perfect matchings such that every edge belongs to exactly one of the $d$ matchings.
+\newline
+\newline
+Consider starting with a graph $G$ that has vertices all with degree $d$. By (1), we know that $G$ must have a perfect matching. Now, taking all of the edges in this perfect matching, which we have proven exists, and removing them, it should be clear that we are now left with a graph $G'$ with degree $d-1$ at every vertex since there are $n/2$ edges in the perfect matching and each edge connects two unique vertices. But this has a perfect matching as well. So we repeat the process and continue finding perfect matchings until we are left with an empty graph. Thus, it should be clear that, by repeating this process, we can generate perfect matchings using non-overlapping sets of edges exactly $d$ times before there are no edges left in the graph and that, therefore, $G$ can be decomposed into $d$ perfect matchings with each matching consisting of a unique set of edges. 
+% End sol%
+
+\pagebreak{}
+\thispagestyle{empty}
+
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}lr}
+\textbf{ID:} 03 & \textbf{Collaborator \#1:} Last Name, First Name\tabularnewline
+\textbf{Name:} Al-Naji, Nader & \textbf{Collaborator \#2:} Last Name, First Name\tabularnewline
+\hline 
+\end{tabular*}
+
+\medskip{}
+
+
+\begin{center}
+\begin{Large}\textbf{Solution to HW 8, Problem 3}\end{Large}
+\par\end{center}
+
+\begin{center}
+\begin{large}\textbf{COS 340 - Spring 2012}\end{large}
+\par\end{center}
+
+\bigskip{}
+
+
+% Begin sol%
+Let $G$ be a bipartite graph with partite sets $X$ and $Y$ such that $|X| = |Y| = n$. Suppose further that the degree of each vertex in $G$ is $n/2$. Prove that $G$ has a perfect matching.
+\newline
+\newline
+Using Hall's theorem, we need to show that for every subset $s \subseteq X$, $|N(s)| \geq |s|$. We do this by considering two different cases for $s$:
+\newline
+\newline
+Case 1: $|s| \leq n/2$
+\newline
+\newline
+In this case, since we know that each vertex in $X$ must connect to at least $n/2$ vertices in $Y$, we have automatically that $|N(s)| \geq |s|$ since $s \leq n/2$.
+\newline
+\newline
+Case 2: $|s| > n/2$
+\newline
+\newline
+For this case, consider $s$ and a second set $t$ consisting of the vertices in $X$ that are not in $s$; there are $|t| < n/2$ such vertices. Now consider connecting vertices in $Y$ to vertices in $t$. If we try to connect a vertex in $Y$ to only vertices in $t$, we find that, since the degree of every vertex in $Y$ is greater than or equal to $n/2$, and since the set $t$ contains $|t| < n/2$ vertices, that we cannot connect a vertex in $Y$ to only vertices in $t$ by the pigeonhole principle and, therefore, that every vertex in $Y$ must connect to at least one vertex in $s$. This makes $|N(s)| = n \rightarrow |N(s)| \geq |s|$.
+\newline
+\newline
+Thus, having considered these two exhaustive cases for $s \subseteq X$, from Hall's theorem, we know that there is a matching from all of the vertices in $X$ to vertices in $Y$. Further, because we know that $|X| = |Y|$, we know that this matching is also perfect. Thus, there exists a perfect matching from $X$ to $Y$.
+% End sol% 
+
+\pagebreak{}
+
+\thispagestyle{empty}
+
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}lr}
+\textbf{ID:} 03 & \textbf{Collaborator \#1:} Last Name, First Name\tabularnewline
+\textbf{Name:} Al-Naji, Nader & \textbf{Collaborator \#2:} Last Name, First Name\tabularnewline
+\hline 
+\end{tabular*}
+
+\medskip{}
+
+
+\begin{center}
+\begin{Large}\textbf{Solution to HW 8, Problem 4}\end{Large}
+\par\end{center}
+
+\begin{center}
+\begin{large}\textbf{COS 340 - Spring 2012}\end{large}
+\par\end{center}
+
+\bigskip{}
+
+
+% Begin sol%
+Let $G$ be a graph where every two odd cycles have at least one vertex in common. Prove that $G$ is 5-colorable.
+\newline
+\newline
+Remove an odd cycle from $G$. Because every odd cycle in the graph shares a vertex with every other odd cycle in the graph, doing so breaks all of the odd cycles in the graph. Thus, the remaining graph consist only of even cycles and is therefore 2-colorable, by the theorem proven in class, using the breadth-first coloring algorithm. The odd cycle removed, similarly, is 3-colorable since an odd cycle is nothing more than an even cycle with one extra node that needs to be colored using a third color (also shown in class). So we can color the odd cycle using three unique colors, say red white and blue, and we can color the subgraph formed by its removal with two colors, say orange and black. It is then clear that we can add the odd cycle back to this subgraph and have a valid 5-coloring of the original graph. Thus, the original graph is 5-colorable.
+% End sol%
+
+\pagebreak{}
+
+\end{document}

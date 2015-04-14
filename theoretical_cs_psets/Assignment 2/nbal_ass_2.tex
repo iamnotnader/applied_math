@@ -1,0 +1,344 @@
+% Use this template to write your solutions
+
+\documentclass[12pt]{article}
+
+% Set the margins
+%
+\setlength{\textheight}{8.5in}
+\setlength{\headheight}{.25in}
+\setlength{\headsep}{.25in}
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+
+% Macros
+\newcommand{\myN}{\hbox{N\hspace*{-.9em}I\hspace*{.4em}}}
+\newcommand{\myZ}{\hbox{Z}^+}
+\newcommand{\myR}{\hbox{R}}
+
+\newcommand{\myfunction}[3]
+{${#1} : {#2} \rightarrow {#3}$ }
+
+\newcommand{\myzrfunction}[1]
+{\myfunction{#1}{{\myZ}}{{\myR}}}
+
+
+% Formating Macros
+
+\newcommand{\myheader}[4]
+{\vspace*{-0.5in}
+\noindent
+{#1} \hfill {#3}
+
+\noindent
+{#2} \hfill {#4}
+
+\noindent
+\rule[8pt]{\textwidth}{1pt}
+
+\vspace{1ex} 
+}  % end \myheader 
+
+\newcommand{\myalgsheader}[0]
+{\myheader
+{ {\bf{COS 340}} }
+{ {\bf{Spring 2012}} }
+{ {\bf{Collaborator 1}} : Diao, Lawrence }
+{ {\bf{Collaborator 2}} : last name, first name}
+}
+
+% Running head (goes at top of each page, beginning with page 2.
+% Must precede by \pagestyle{myheadings}.
+\newcommand{\myrunninghead}[2]
+{\markright{{\it {#1}, {#2}}}}
+
+\newcommand{\myrunningalgshead}[2]
+{\myrunninghead{COS 340 }{{#1}}}
+
+\newcommand{\myrunninghwhead}[2]
+{\myrunningalgshead{Solution to HW {#1}, Problem {#2}}}
+
+\newcommand{\mytitle}[1]
+{\begin{center}
+{\large {\bf {#1}}}
+\end{center}}
+
+\newcommand{\myhwtitle}[3]
+{\begin{center}
+{\large {\bf Solution to HW {#1}, Problem {#2}}}\\
+\medskip 
+{\it {#3}} % Name goes here
+\end{center}}
+
+\newcommand{\mysection}[1]
+{\noindent {\bf {#1}}}
+
+%%%%%% Begin document with header and title %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{2}{1}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+There is a class of $n \geq 9$ students.
+\newline
+1. In how many ways can you form three groups of three students each ?
+\newline
+\newline
+If we start by taking the ordering of the groupings and the ordering of the students within
+the groupings to be important, then by the generalized product rule we have 
+\newline
+$(n)(n-1)(n-2) \times (n-3)(n-4)(n-5) \times (n-6)(n-7)(n-8)$
+\newline
+possibilities. However, because the ordering of each student within a group doesn't matter,
+that is, because groups in which order matters form a k-to-one  mapping with $k = 3\times 2\times 1 = 3!$ onto groups where
+order doesn't matter, we must divide each of the three factors by $3!$ by the division rule and get: 
+\newline
+\newline
+$\frac{(n)(n-1)(n-2)(n-3)(n-4)(n-5)(n-6)(n-7)(n-8)}{3!3!3!}
+= \frac{n!}{3!3!3!(n-9)!}$.
+\newline
+\newline
+Finally, because the order of individual groups doesn't matter, that is because groups of three where
+each group is distinct form a k-to-one mapping with $k = 3\times 2\times 1 = 3!$ onto groups where
+each group is not distinct, we must again divide out a factor of 3! by the division rule and get:
+\newline
+\newline
+$\frac{n!}{3!3!3!3!(n-9)!}$.
+\newline
+\newline
+
+Another way to look at this is that we are counting the number of ways to choose three distinct groups
+of three and a group of $n-9$ from a set of $n$ elements. Thus, using the multinomial theorem
+derived in class, we have directly:
+\newline
+\newline
+$n \choose {3, 3, 3, n-9}$ $ = \frac{n!}{3!3!3!(n-9)!}$
+\newline
+\newline
+Then, as before, we must divide out a factor of $3!$ because groups of three where
+each group is distinct form a k-to-one mapping with $k = 3\times 2\times 1 = 3!$ onto groups where
+each group is not distinct and get as before:
+\newline
+\newline
+$\frac{n!}{3!3!3!3!(n-9)!}$.
+\newline
+\newline
+
+2. In how many ways can you form three groups, one with two students, one with three
+students and one with four students 
+\newline
+\newline
+This follows in the same way as the multinomial argument above but we will be rigorous and
+begin by saying that order matters in each set. Then, the number of possibilities by the generalized product rule is:
+\newline
+$(n)(n-1) \times (n-2)(n-3)(n-4) \times (n-5)(n-6)(n-7)(n-8)$.
+\newline
+However, because the ordering of each student within each group doesn't matter,
+that is, because we have a k-to-1 mapping from the ordered groups of students to the unordered
+groups of students in each case, we must divide each term by its respective k. Thus, because 
+each set is distinct unlike in problem $1$, we have directly:
+\newline
+\newline
+$\frac{(n)(n-1)}{2!}\times\frac{(n-2)(n-3)(n-4)}{3!}\times\frac{(n-5)(n-6)(n-7)(n-8)}{4!} = \frac{n!}{2!3!4!(n-9)!}$.
+\newline
+\newline
+Again, we could also have taken a straightforward multinomial approach and observed that
+this is simply choosing sets of size 2, 3, 4, and $n-9$ from a set of size n. The number 
+of ways one can do this, by the multinomial theorem is thus:
+\newline
+\newline
+$n \choose {2, 3, 4, n-9}$ $ = \frac{n!}{2!3!4!(n-9)!}$.
+\newline
+\newline
+And again no extra correction is needed because each set is distinct in this case.
+% end Solution 
+
+\pagebreak
+\myalgsheader
+\pagestyle{plain}
+\myhwtitle{2}{2}{Al-Naji, Nader}
+\bigskip
+% begin Solution
+Evaluate the following sums:
+\newline
+\newline
+1. $\sum\limits_{i=0}^{n-1} $$n \choose i$ $n \choose {i+1}$
+\newline
+\newline
+$\sum\limits_{i=0}^{n-1} $$n \choose i$ $n \choose {i+1}$$ = \sum\limits_{i=0}^{n-1} $$n \choose i$ $n \choose {n-1-i}$
+\newline
+The identity used to get from the first sum to the second is simply that $n\choose i$$=$$n \choose {n-i}$
+which can be trivially shown (and was shown in precept). Now we can make a story for this new sum. It's 
+as if we partition a bin of size $2n$ into two bins of size $n$ and count the number of ways we can have
+$n-1$ balls distributed between these two bins of size n. We count the number of ways bin 1 can have $0$
+balls and bin two can have $n-1$ balls, the number of ways bin 1 can have $1$ ball and bin 2 can have $n-2$ balls
+and so on up to bin 1 having $n-1$ balls and bin 2 having $0$ balls. But this is simply the number of 
+ways to distribute $n-1$ balls into a bin of size $2n$. Thus, this sum is equal to $2n \choose {n-1}$.
+\newline
+\newline
+2. $\sum\limits_{0 \leq i,j,k \leq n \colon i+j+k = 2n}^{}$$n\choose i$$n \choose j$$n \choose k$
+\newline
+\newline
+We can immediately put a story onto this sum. It is as if we took a bin of size $3n$ and broke it up
+into three bins of size $n$ and then counted the number of ways we could distribute $2n$ balls between
+these three bins of size $n$. But, as above, this is the same as if we took a bin of size $3n$ and  directly
+counted the number of ways we could put $2n$ balls into it. So this sum is simply $3n \choose 2n$.
+% end Solution
+
+
+\pagebreak
+\myalgsheader
+\pagestyle{plain}
+\myhwtitle{2}{3}{Al-Naji, Nader}
+\bigskip
+% begin Solution
+Suppose there are $2$ boxes each containing 200 balls: 100 red balls numbered from 1 to 100,
+and 100 blue balls numbered from 1 to 100. We pick one ball at random from each box. 
+\newline
+\newline
+1. Given that at least one of the two balls picked is red, what is the probability that both balls are red?
+\newline
+\newline
+The overall sample space is all permutations of the color and number of the first ball combined
+with all permutations of the color and number of the second ball to make a total of 
+$2\times 100 \times 2 \times 100 = 40000$ distinct events.
+\newline
+\newline
+Let $O$ be the event that at least one of the two balls picked is red and let $B$ be the event that
+both balls are red. We are picking two balls so let us enumerate the possibilities only
+with respect to color for each pick:
+\newline
+1) First pick: Red; Second pick: Red
+\newline
+2) First pick: Red;  Second pick: Blue
+\newline
+3) First pick: Blue; Second pick: Red
+\newline
+4) First pick: Blue; Second pick: Blue
+\newline
+\newline
+The probabilites of any of these four events happening is $\frac{100}{200}\times \frac{100}{200} = \frac{1}{4}.$
+Event $O$ consists of events $1, 2,$ and $3$ so $P(O) = \frac{3}{4}.$ Event $B$ consists of event $1$ only so
+$P(B) = \frac{1}{4}$. Finally, $O \cap B$ consists of event $1$ only and so $P(O \cap B) = \frac{1}{4}$ as well.
+Using the definition of conditional probability we have:
+\newline
+\newline
+$P(B | O) = \frac{P(B \cap O)}{P(O)} = \frac{\frac{1}{4}}{\frac{3}{4}} = \frac{1}{3}$
+\newline
+\newline
+2. Given that at least one of the two balls is red and numbered 13, what is the probability that
+both balls are red?
+\newline
+\newline
+Again take the overall sample space as all permutations of the color and number of the first ball combined
+with all permutations of the color and number of the second ball to make a total of 
+$2\times 100 \times 2 \times 100 = 40000$ distinct events.
+\newline
+\newline
+Now let $O_{r13}$ be the event that at least one of the balls is red and numbered thirteen and $B$ be the event that
+both balls are red. We have a similar expression as in part one:
+\newline
+\newline
+$P(B | O_{r13}) = \frac{P(B \cap O_{r13})}{P(O_{r13})}$
+\newline
+\newline
+$P(O_{r13})$ is not difficult to compute; it is simply $1 - P($neither ball is red and 13$) 
+= 1 - \frac{199}{200} \times \frac{199}{200} = \frac{399}{40000}$. Computing $P(B \cap O_{r13})$
+is less trivial and we will do it by breaking the probability into three separate mutually exclusive events. 
+\newline
+\newline
+A = First ball is red and not thirteen and the second ball is red and thirteen.
+\newline
+B = First ball is red and thirteen and the second ball is red and not thirteen.
+\newline
+C = The first and second ball are both red and numbered thirteen.
+\newline
+\newline
+It should be clear that these three events are mutually exclusive and that these
+three events cover $P(B \cap O_{r13})$.
+Thus, $P(B \cap O_{r13}) = P(A) + P(B) + P(C) 
+= \frac{99}{200}\times \frac{1}{200} + \frac{1}{200}\times \frac{99}{200} + 
+\frac{1}{200} \times \frac{1}{200} = \frac{199}{40000}$. Now that we have both
+$P(B \cap O_{r13})$ and $P(O_{r13})$, we can compute $P(B | O_{r13})$ as follows:
+\newline
+\newline
+$P(B | O_{r13}) = \frac{P(B \cap O_{r13})}{P(O_{r13})} = \frac{\frac{199}{40000}}{\frac{399}{40000}}
+= \frac{199}{399}$.
+% end Solution
+
+\pagebreak
+\myalgsheader
+\pagestyle{plain}
+\myhwtitle{2}{4}{Al-Naji, Nader}
+\bigskip
+% begin Solution
+Suppose we have a biased coin that turns up heads with probability $p$.
+\newline
+\newline
+1. Calculate the probability that the number of heads in $n$ independent tosses of this coin is exactly $i$.
+\newline
+\newline
+The probability of getting exactly $i$ heads and exactly $n-i$ tails in a specific order is simply
+$p^i (1-p)^{n-i}$. There are $n \choose i$ different orders in which we can get $i$ heads 
+in $n$ flips so the probability of getting $i$ heads in $n$ flips in any order is simply:
+\newline
+\newline
+$P($exactly i heads$) = P($getting exactly i heads in a specific order$) \times $number of was to get i heads in n flips
+$= $ $n \choose i$ $p^i  (1-p)^{n-i}$
+\newline
+\newline
+2. Give a closed form expression for the probability that the number of heads in $n$ independent tosses of
+this coin is odd.
+\newline
+\newline
+Let $Odd(n)$ be a function that gives the probability that the number of heads is odd as a function of n.
+Now, we can decompose $Odd(n)$ into two parts as follows:
+\newline
+\newline
+$Odd(n) = (1-p) \times Odd(n-1) + p \times Even(n-1) = (1-p) \times Odd(n-1) + p \times (1 - Odd(n-1))$
+\newline
+\newline
+where $Even(n)$ is a function that returns the probability the number of coin flips is even. Note that
+$Even(n) = 1 - Odd(n)$ and that we've broken $Odd(n)$ up logically into the probability that the number
+of heads after $n-1$ flips is even and the probability that the number of heads after $n-1$ flips is odd. If
+the number of flips is even, then we need a heads on the $n^{th}$ flip; otherwise, we need a tails. If we
+continue to expand in this way, we begin to notice a pattern:
+\newline
+\newline
+$Odd(n) = (1-p) \times Odd(n-1) + p \times (1 - Odd(n-1)) = Odd(n-1)(1-2p)+p$
+\newline
+\newline
+$= (Odd(n-2)(1-2p) + p)(1-2p) + p = Odd(n-2)(1-2p)^2 + p(1-2p) + p$
+\newline
+\newline
+$= (Odd(n-3)(1-2p) + p)(1-2p)^2 + p(1-2p) + p = Odd(n-3)(1-2p)^3 + p(1-2p)^2 + p(1-2p) + p$
+\newline
+\newline
+...
+\newline
+\newline
+$= Odd(0)(1-2p)^n + p \sum\limits_{i=0}^{n-1} (1-2p)^i = p \sum\limits_{i=0}^{n-1} (1-2p)^i$ because $Odd(0) = 0$
+\newline
+\newline
+$= p \frac{1-(1-2p)^n}{1-(1-2p)} = p \frac{1-(1-2p)^n}{2p} = \frac{1}{2} (1 - (1-2p)^n)$.
+\newline
+\newline
+Note the geometric series observed at the ellipses and the closed form expression for the geometric series 
+used on the last line.
+
+
+% end Solution
+
+
+
+
+\end{document}

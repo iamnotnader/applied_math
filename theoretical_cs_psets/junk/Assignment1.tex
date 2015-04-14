@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\usepackage{slashbox}
+
+\begin{document}
+\title{COS340 Homework 1}
+\author{Nader Al-Naji}
+\date{\today}
+\maketitle
+-
+\newline
+\textbf{Problem 1}
+\newline
+\newline
+Let $S = \{1,2, ...,n\}$. How many ordered pairs $(A,B)$ of subsets of S are there that satisfy $A \subseteq B$?
+\newline
+\newline
+Let $B_k$ consist of the subsets of $S$ that contain exactly $k$ elements. If we fix $k$, then $|B_k| = $$n \choose k$ since there are
+$n \choose k$ different ways to choose $k$ elements from a set of $n$. Now, each of these $k$ element subsets of $S$ has $2^k$ subsets of its
+own, a fact we showed in class. So if we wish to enumerate all tuples $(A_{j}, B_{k,i})$ such that $A_{j} \subseteq B_{k,i}$ for some set $A_j$ with $B_{k,i} \in B_k$, then
+there will be $2^k \times $$n \choose k$ of them since there are $n \choose k$ elements in the set $B_k$ and each one has
+$2^k$ subsets. We get the quantity we want by summing over $k$. $\sum_{k=0}^n 2^n \times $$n \choose k$$ = $$\sum_{k=0}^n 2^n \times 1^{n-k} $$n \choose k$
+$ = $$3^n$ tuples of $(A,B)$ such that $A, B \subseteq S$ and $A \subseteq B$.
+\newline
+\newline
+Another way to think about this is to consider the the set of all strings of length $n$ having the numbers $0$, $1$, or $2$ as digits. By the 
+generalized product rule, there are $3 \time 3 \times ... \times 3$ = $3^n$ of these strings. Now, if we think of each digit in one of these
+strings as representing an element of the set $S$ and having it take on the digit $0$ as meaning the element is in set $S$ but not in
+sets $A or B$, the digit $1$ as representing the element being in $B$ but not in $A$, and the digit $2$ as representing the element being
+in both $A and B$, then we see that these strings have a one-to-one mapping to tuples $(A, B)$ from above and, by the bijection rule,
+that there are $3^n$ of these tuples.
+\newline
+\textbf{Problem 2}
+\newline
+Prove that given $n > 0$ and a set of $n+1$ positive integers, none of them exceeding $2n$, there is at least one integer in this set that divides 
+another integer in this set.
+\newline
+\newline
+First, note that all even integers can be written in the form $k \times 2^b$ for some b where k is an odd number smaller than the integer itself and $b >= 0$. To see this, note that a factor that is even can always be made odd by pulling out a two. So consider all pairs of the form $(k, ak)$ where $k$ is an odd number and $a$ has the form $2^b$ for some $b \geq 0$. In a set of 2n numbers with $n > 0$, there are
+n different values that k can take on, one for each of the odd numbers in the set of numbers $[0,2n]$. Further, note that every number in the set $[0,2n]$ belongs to exactly one of
+these n different groups: a number is either odd, in which case it has its own group where it is the leftmost part of the tuple, or a number is even, in which case it can be broken down
+into a multiple of $2^b$ and a distinct odd number $k$ and put into the $k^{th}$ group as the rightmost part of the tuple. Finally, note that if two numbers are in the same
+group, then one of them divides the other. Since there are only $n$ different groups in a set of $2n$ numbers, then by the pigeonhole principle, selecting a set of $n+1$ numbers from
+this set results in at least one collision with two of the numbers being in the same group and, therefore, one number dividing another. 
+\newline
+\textbf{Problem 3}
+\newline
+A chocolate bar consists of $n \times m$ (where $n,m \geq 1$) square pieces arranged in a rectangle. The square in the upper left corner is poisoned. Two players (Alice and Bob)
+are taking turns breaking the bar into two rectangular bars along the lines, and eating the non-poisoned part. The player left with the lone poisoned piece loses the game.
+Alice makes the first move. 
+\newline
+(a) For each pair $1 \leq n,m \leq 5$ which player has the winning strategy?
+\newline
+\newline
+\begin{tabular}{r|ccccc}
+\backslashbox[10pt][l]{n}{m} & 1 & 2 & 3 & 4 & 5\\\hline
+1 & Bob & Alice & Alice & Alice & Alice\\
+2 & Alice & Bob & Alice & Alice & Alice\\
+3 & Alice & Alice & Bob & Alice & Alice\\
+4 &	Alice	&	Alice  & Alice		& Bob & Alice\\
+5 &	Alice	&	Alice  & Alice		& Alice& Bob
+\end{tabular} 
+\newline
+\newline
+The $1 \times 1$ case is trivial: Alice loses automatically. With any $n \times 1$ bar, Alice can turn the bar into a $1 \times 1$ and force Bob to lose so she 
+wins the rest. If the bar is a $2 \times 2$, then all of Alice's move result in her losing since Bob can immediately turn the bar into a $1 \times 1$. With all the other $n \times 2$ moves, Alice can turn the bar into 
+a square and force Bob to lose. Alice wins the $3 \times 1$ and $3 \times 2$ case by symmetry. With the $3 \times 3$ case, again all of her moves result in an 
+automatic loss since Bob can immediately turn it into a $2 \times 2$ or $1 \times 1$ and force a loss. With the rest of the $n \times 3$, Alice can turn the bar
+into a $3 \times 3$ for Bob and force him to lose. The first $3$ of the $n \times 4$ case come by symmetry again and $4 \times 4$ results in a loss since Bob can
+immediately turn the bar into a $k \times k$ and force Alice to lose. Alice wins the $4 \times 5$ bar by turning it into a $4 \times 4$ for Bob. Finally, the
+first $4$ of the $n \times 5$ case come by symmetry. In the $5 \times 5$ case Alice loses because Bob can turn the bar into a square after her turn, which makes
+her lose.
+\newline
+\newline
+(b) Who has the winning strategy for arbitrary $n,m \geq 1$? Prove your answer.
+\newline
+\newline
+\textbf{Problem 4}
+
+\end{document}

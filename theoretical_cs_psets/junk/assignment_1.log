@@ -1,0 +1,17 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdftex 2012.2.12)  15 FEB 2012 00:05
+entering extended mode
+**C:/Users/daddy/Dropbox/Princeton*Classes/Junior*Year/Second*Semester/COS340/a
+ssignment_1.pdf
+
+("C:/Users/daddy/Dropbox/Princeton Classes/Junior Year/Second Semester/COS340/a
+ssignment_1.pdf"
+! Undefined control sequence.
+l.3 \documentclass
+                  [12pt]{article}
+? 
+! Emergency stop.
+l.3 \documentclass
+                  [12pt]{article}
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!

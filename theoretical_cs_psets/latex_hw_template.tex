@@ -1,0 +1,97 @@
+% Use this template to write your solutions
+
+\documentstyle[12pt]{article}
+
+% Set the margins
+%
+\setlength{\textheight}{8.5in}
+\setlength{\headheight}{.25in}
+\setlength{\headsep}{.25in}
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+
+% Macros
+\newcommand{\myN}{\hbox{N\hspace*{-.9em}I\hspace*{.4em}}}
+\newcommand{\myZ}{\hbox{Z}^+}
+\newcommand{\myR}{\hbox{R}}
+
+\newcommand{\myfunction}[3]
+{${#1} : {#2} \rightarrow {#3}$ }
+
+\newcommand{\myzrfunction}[1]
+{\myfunction{#1}{{\myZ}}{{\myR}}}
+
+
+% Formating Macros
+
+\newcommand{\myheader}[4]
+{\vspace*{-0.5in}
+\noindent
+{#1} \hfill {#3}
+
+\noindent
+{#2} \hfill {#4}
+
+\noindent
+\rule[8pt]{\textwidth}{1pt}
+
+\vspace{1ex} 
+}  % end \myheader 
+
+\newcommand{\myalgsheader}[0]
+{\myheader
+{ {\bf{COS 340}} }
+{ {\bf{Spring 2012}} }
+{ {\bf{Collaborator 1}} : last name, first name }
+{ {\bf{Collaborator 2}} : last name, first name}
+}
+
+% Running head (goes at top of each page, beginning with page 2.
+% Must precede by \pagestyle{myheadings}.
+\newcommand{\myrunninghead}[2]
+{\markright{{\it {#1}, {#2}}}}
+
+\newcommand{\myrunningalgshead}[2]
+{\myrunninghead{COS 340 }{{#1}}}
+
+\newcommand{\myrunninghwhead}[2]
+{\myrunningalgshead{Solution to HW {#1}, Problem {#2}}}
+
+\newcommand{\mytitle}[1]
+{\begin{center}
+{\large {\bf {#1}}}
+\end{center}}
+
+\newcommand{\myhwtitle}[3]
+{\begin{center}
+{\large {\bf Solution to HW {#1}, Problem {#2}}}\\
+\medskip 
+{\it {#3}} % Name goes here
+\end{center}}
+
+\newcommand{\mysection}[1]
+{\noindent {\bf {#1}}}
+
+%%%%%% Begin document with header and title %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{ assignment number}{ problem number}{your last name, your first name}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+
+Your solution.
+
+
+% end Solution 
+
+\end{document}

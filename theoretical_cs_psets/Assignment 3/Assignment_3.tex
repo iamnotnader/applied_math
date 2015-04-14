@@ -1,0 +1,371 @@
+% Use this template to write your solutions
+
+\documentclass[12pt]{article}
+\usepackage{ulem}
+\usepackage{cancel}
+
+% Set the margins
+%
+\setlength{\textheight}{8.5in}
+\setlength{\headheight}{.25in}
+\setlength{\headsep}{.25in}
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+
+% Macros
+\newcommand{\myN}{\hbox{N\hspace*{-.9em}I\hspace*{.4em}}}
+\newcommand{\myZ}{\hbox{Z}^+}
+\newcommand{\myR}{\hbox{R}}
+
+\newcommand{\myfunction}[3]
+{${#1} : {#2} \rightarrow {#3}$ }
+
+\newcommand{\myzrfunction}[1]
+{\myfunction{#1}{{\myZ}}{{\myR}}}
+
+
+% Formating Macros
+
+\newcommand{\myheader}[4]
+{\vspace*{-0.5in}
+\noindent
+{#1} \hfill {#3}
+
+\noindent
+{#2} \hfill {#4}
+
+\noindent
+\rule[8pt]{\textwidth}{1pt}
+
+\vspace{1ex} 
+}  % end \myheader 
+
+\newcommand{\myalgsheader}[0]
+{\myheader
+{ {\bf{COS 340}} }
+{ {\bf{Spring 2012}} }
+{ {\bf{Collaborator 1}} : Diao, Lawrence }
+{ {\bf{Collaborator 2}} : last name, first name}
+}
+
+% Running head (goes at top of each page, beginning with page 2.
+% Must precede by \pagestyle{myheadings}.
+\newcommand{\myrunninghead}[2]
+{\markright{{\it {#1}, {#2}}}}
+
+\newcommand{\myrunningalgshead}[2]
+{\myrunninghead{COS 340 }{{#1}}}
+
+\newcommand{\myrunninghwhead}[2]
+{\myrunningalgshead{Solution to HW {#1}, Problem {#2}}}
+
+\newcommand{\mytitle}[1]
+{\begin{center}
+{\large {\bf {#1}}}
+\end{center}}
+
+\newcommand{\myhwtitle}[3]
+{\begin{center}
+{\large {\bf Solution to HW {#1}, Problem {#2}}}\\
+\medskip 
+{\it {#3}} % Name goes here
+\end{center}}
+
+\newcommand{\mysection}[1]
+{\noindent {\bf {#1}}}
+
+%%%%%% Begin document with header and title %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{3}{1}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+Consider a program that runs a loop $n$ times, updating variable $X$ in a randomized fashion. In the 
+$ith$ iteration of the loop, with probability $1/i$, $X$ is set to $i$. Compute
+$P[X = i]$ at the end of n iterations.
+\newline
+\newline
+Let $S_i$ be the event that $X$ is set to $i$ at the $i$th iteration of the loop. So the probability that $X = i$ 
+at the end of $n$ iterations is the probability that at iteration $i$, $X$ is set to $i$, and at every iteration 
+$k$ such that $i < k \leq n$, $X$ is not set to $k$. Written formally, this quantity is:
+\newline
+\newline
+$P[S_i \cap \bar{S}_{i+1} \cap ... \cap \bar{S}_{n-1} \cap \bar{S}_n]) = P[S_i] \times P[\bar{S}_{i+1}] \times ... \times P[\bar{S}_{n-1}] \times P[\bar{S}_n]$
+\newline
+Note that whether or not $X$ is set to $i$ at any given iteration is mutually independent of all other iterations and so it is
+safe to say that this intersection is equal to this product.
+\newline
+\newline
+If we write out these lines, we begin to notice a pattern:
+\newline
+\newline
+$P[S_i] \times P[\bar{S}_{i+1}] \times ... \times P[\bar{S}_{n-1}] \times P[\bar{S}_n] = \frac{1}{i} \times (1 - \frac{1}{i+1}) 
+\times ... \times (1 - \frac{1}{n-1}) \times (1 - \frac{1}{n})$
+\newline
+$= \frac{1}{\cancel{i}} \times \frac{\cancel{i}}{\cancel{i+1}} \times \frac{\cancel{i+1}}{\cancel{i+2}} \times ... \times \frac{\cancel{n-3}}{\cancel{n-2}} \times \frac{\cancel{n-2}}{\cancel{n-1}} \times \frac{\cancel{n-1}}{n} = \frac{1}{n}$.
+\newline
+\newline
+All the terms in between cancel leaving $n$ in the denominator and thus, $P[X = i] = \frac{1}{n}$ $ \forall $ $ i \in [1, n]$ and $P[X=i] = 0$ otherwise.
+
+% end Solution 
+
+\pagebreak
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{3}{2}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+The goal of this problem is to show that given $n$ independent random bits (fair coin flips) $x_1, x_2, ..., x_n$ one can
+generate a much larger number $(m)$ of bits which are pairwise independent.
+\newline
+\newline
+1. Consider the following construction: Given $S \subseteq {x_1, ... , x_n}$, let $y_S$ be the random variable whose
+value is the sum (mod 2) of all the elements in $S$. Show that for any two (distinct) sets $S$ and $T$, $y_S$ and $y_T$
+are independent random variables. Conclude that from a set of $n$ random independent bits, one can generate $2^n$ pairwise
+independent random bits.
+\newline
+\newline
+First, let us show that for any set $S \subseteq {x_1, ... , x_n}$ of random bits, $P(y_S = 1) = P(y_S = 0) = 1/2$.
+We will do this using induction:
+\newline
+\newline
+Let $P(x) = $ ``for a set $S \subseteq {x_1, ... , x_n}$ of x independent random bits (fair coin flips), $P(y_S = 1) = P(y_S = 0) = 1/2 $''.
+\newline
+\textbf{Base: $x = 1$}
+\newline
+Clearly if the set $S$ contains a single random bit, then the probabilities will be $1/2$ by construction.
+\newline
+\textbf{Step:} assuming $P(x)$ for $x = n$ is true, show it is true for $n+1$.
+\newline
+So we have $P(y_{S,n} = 1) = P(y_{S,n} = 0) = 1/2$. Now we want to show that adding a random bit preserves this.
+\newline
+$P(y_{S, n+1} = z) = P(y_{S,n} \oplus x_{n+1} = z) = P(x_{n+1} = z \oplus y_{S,n}) = 1/2$. 
+\newline
+Because $x_{n+1}$ is a random bit with probability 1/2 of taking on a value of $0$ or $1$. Note that this is true
+regardless of whether $z$ is zero or one.
+\newline
+Thus, $P(y_S = 0) = P(y_S = 1) = 1/2$ for all $S \subseteq {x_1, ... , x_n}$.
+\newline
+\newline
+Now we want to show that for two distinct sets $S$ and $T$ of bits, that $P(y_S, y_T) = P(y_T)P(y_S)$ for all
+choices of $S$ and $T$. To do this we will consider three possibilities for $S$ and $T$ and show that
+$P(y_T | y_S) = P(y_T)$ and vice versa for all three cases. First, that
+$S$ and $T$ are disjoint, second that $S \subset T$, and third that $S$ and $T$ are distinct non-disjoint
+sets such that neither is a subset of the other.
+\newline
+\newline
+a) If $S$ and $T$ are disjoint, then $P(y_S, y_T) = P(y_T)P(y_S)$, the definition of independence.
+\newline
+\newline
+This is trivially true since if $S$ and $T$ are disjoint, then the value of $y_S$ says nothing about $y_T$ and vice versa because
+they have no bits in common. Thus, if $S$ and $T$ are disjoint, then $P(y_T | y_S) = P(y_T)$ and vice versa. So we have:
+\newline
+$P(y_T, y_S) = P(y_S)P(y_T | y_S) = P(y_S)P(y_T)$, the definition of independence using the chain rule.
+\newline
+\newline
+b) If $S \subset T$, then $P(y_S, y_T) = P(y_S)P(y_T)$.
+\newline
+\newline
+First, note that because $T-S$ is a mutually independent set of bits, we can apply the results of the theorem proved
+at the beginning and get:
+\newline
+$P(y_T = z | y_S = x) = P(x \oplus y_{T-S} = z) = P(y_{T-S} = x \oplus z) = 1/2 = P(y_T = z)$.
+\newline
+Note that this applies to all valid values of $x$ and $z$ in general and so we have $P(y_T | y_S) = P(y_T)$. 
+To show that this is sufficient for independence, we again combine the chain rule with this result:
+\newline
+$P(y_T, y_S) = P(y_S)P(y_T | y_S) = P(y_S)P(y_T)$, the definition of independence.
+\newline
+\newline
+c) If $S \not\subseteq T$ and $T \not\subseteq S$ and $S$ and $T$ are not disjoint and not equal, 
+then $P(y_S, y_T) = P(y_T)P(y_S)$.
+\newline
+\newline
+Under these conditions, there must at least one element that is in $S$ and not in $T$ and vice versa and at least one element that
+is in $S \cap T$ so the intersection is non-empty. Basically this says that $S \cap T$ is a strict subset of $S$ and $T$. So we have:
+\newline
+$P(y_T | y_S) = P(y_T | y_{S-T} \oplus y_{T \cap S}) = P(y_T | y_{S \cap T})$ using (a) since $T-S$ and $T$ are disjoint.
+\newline
+But, as stated, $T \cap S$ is a strict subset of $T$. So, by (b) we have:
+$P(y_T | y_{S \cap T}) = P(y_T) \rightarrow P(y_T | y_S) = P(y_T) \rightarrow P(y_S, y_T) = P(y_T)P(y_S)$ from above and so $y_T$ and $y_S$ are independent.
+\newline
+\newline
+Because these three cases cover all possibilities for $S$ and $T$ to overlap, showing that all three of them result in independence
+of $S$ and $T$ is sufficient and we have $P(y_S, y_T) = P(y_T)P(y_S)$ in general and so $y_S$ and $y_T$ are independent.
+\newline
+\newline
+For the last part, there are $2^n$ distinct subsets of a set of $n$ elements. Thus, because we have shown that any two distinct 
+subsets of $n$ random bits are pairwise independent, and there are $2^n$ such subsets, given $n$ random bits, we can generate $2^n$ pairwise 
+random bits using these distinct subsets.
+\newline
+\newline
+2. Are the bits $y_S$ constructed above 3-wise independent? Prove your answer.
+\newline
+\newline
+No. Consider $S = \{x_1\}, T = \{x_2\},$ and $U = \{x_1, x_2\}$. Then given $y_S$ and $y_T$, we can deduce that
+$y_S = x_1$ and $y_T = x_2$ and know that $y_U = x_1 \oplus x_2 = y_S \oplus y_T$ with probability 1. So, we have
+as a counterexample:
+\newline
+$P(y_U = z | y_S = z, y_T = 0) = P(z = z \oplus 0) = P(z = z) = 1 \not= 1/2 = P(y_U = z)$.
+\newline
+\newline
+Thus, we have $P(y_U = z, y_S = z, y_T = 0) = P(y_S = z)P(y_T = 0| y_S=z)P(y_U=z | y_S=z, y_T=0) = 1/2\times 1/2 \times 1 = 1/4 
+\neq P(y_S = z)P(y_T = 0)P(y_U = z) = 1/8$ by the chain rule, a violation of the definition of three-wise independence.
+
+% end Solution 
+
+
+\pagebreak
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{3}{3}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+
+Let $X_1, ..., X_k$ be iid random variables where each $X_i$ is uniform in {1, ..., n}. Let $Y = max{X_1, ..., X_k}$.
+\newline
+\newline
+1. Compute $P[Y>i]$ for $0 \leq i \leq n$.
+\newline
+\newline
+This quantity is equal to $1 - P[X_j \leq i]$ for every value of j between one and $k$ inclusive. Thus, 
+because all the $X_i$ are independent and identically distributed, we have:
+\newline
+\newline
+$P[Y > i] = 1 - P[X_1 \leq i] \times ... \times P[X_k \leq i] = 1 - P[X_1 \leq i]^k = 1 - (\frac{i}{n})^k = \frac{n^k - i^k}{n^k}$.
+\newline
+\newline
+2. Compute $E[Y]$.
+\newline
+\newline
+$E[Y] = \sum\limits_{i=0}^{n} P[Y>i] = \sum\limits_{i=0}^{n} 1 - (\frac{i}{n})^k = \sum\limits_{i=0}^{n} 1 - \sum\limits_{i=0}^{n} (\frac{i}{n})^k = n + 1 - \sum\limits_{i=0}^{n} (\frac{i}{n})^k$
+\newline
+\newline
+3. Find $\lim\limits_{n \rightarrow \infty} \frac{E[Y]}{n}$
+\newline
+\newline
+$\lim\limits_{n \rightarrow \infty} \frac{E[Y]}{n} = 1 + \frac{1}{n} - \frac{1}{n^{k+1}} \sum\limits_{i=0}^{n} i^k$
+\newline
+\newline
+Using a basic result from calculus, we know that, because $i^k$ is an increasing function of $i$ for positive $i$, it
+can be bound between two integrals as such:
+\newline
+\newline
+$\int\limits_{a-1}^{b} i^k \,di \leq \sum\limits_{i=a}^{b} i^k \leq \int\limits_{a}^{b+1} i^k \, di$.
+\newline
+\newline
+However, because we are taking the limit as $n$ goes to infinity, we care only about the high order terms and so we have:
+\newline
+\newline
+$\lim\limits_{n \rightarrow \infty} \sum\limits_{i=0}^{n} i^k \rightarrow \lim\limits_{n \rightarrow \infty} \int\limits_{0}^{n} i^k \, di = \frac{n^{k+1}}{k+1}$.
+\newline
+\newline
+Finally, subbing this result into our original equation, we can evaluate the limit and get the answer:
+\newline
+\newline
+$\lim\limits_{n \rightarrow \infty} \frac{E[Y]}{n} = 1 + \frac{1}{n} - \frac{1}{n^{k+1}} \sum\limits_{i=0}^{n} i^k = \lim\limits_{n \rightarrow \infty} 1 + \frac{1}{n} - \frac{1}{n^{k+1}}
+\times \frac{n^{k+1}}{k+1} = \lim\limits_{n \rightarrow \infty} 1 + \frac{1}{n} - \frac{1}{k+1} = \frac{k}{k+1}$.
+
+
+% end Solution 
+
+\pagebreak
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{3}{4}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+A fair coin is tossed $2n$ times.
+\newline
+\newline
+1. Calculate $P_t$, the probability that it turns up heads exactly $t$ times. 
+\newline
+\newline
+This is similar to problem four in homework 2. Here $p = 1/2$ so the probability of a specific sequence of $t$ heads
+and $2n-t$ tails is $(1/2)^{2n}$. Since there are ${2n} \choose t$ ways to get $t$ heads in $2n$ flips, the total 
+probability is simply:
+\newline
+\newline
+$P_t = {{2n} \choose t} (\frac{1}{2})^{2n}$.
+\newline
+\newline
+2. Find a number $\alpha$ such that $P_n = \Theta(n^{\alpha})$.
+\newline
+\newline
+We will use Stirling's approximation and simplify the following:
+\newline
+\newline
+$P_n = {{2n} \choose n} (\frac{1}{2})^{2n} = \frac{(2n)!}{n!n!2^{2n}} = \Theta(\frac{\sqrt{2n}(2n)^{2n}e^n e^n}{e^{2n}\sqrt{n}\sqrt{n} n^{n}n^{n} 2^{2n}})
+= \Theta (\frac{\sqrt{2n} 2^{2n} n^{2n} e^{2n}}{n 2^{2n} n^{2n} e^{2n}}) = \Theta(\frac{2^{1/2}}{n^{1/2}}) = \Theta(n^{-1/2})$.
+\newline
+\newline
+So $\alpha = -1/2$.
+\newline
+\newline
+3. Prove that for any integer $t \in [n - \sqrt{n}, n + \sqrt{n}], P_t = \Theta (P_n)$
+\newline
+\newline
+First, we will show that $\lim\limits_{n \rightarrow \infty} \frac{P_t}{P_n} \leq 1$. This will establish that 
+$P_t$ is at least $O(P_n)$. Then, to achieve the tight bound, we will establish a lower bound of $P_t = \Omega (P_n)$ 
+for all  $t \in [n - \sqrt{n}, n + \sqrt{n}]$ and conclude that, because $P_t = O(P_n)$ and $P_t = \Omega(P_n)$, 
+that $P_t = \Theta(P_n)$ for all $t \in [n - \sqrt{n}, n + \sqrt{n}]$.
+\newline
+\newline
+$\lim\limits_{n \rightarrow \infty} \frac{P_t}{P_n} = \lim\limits_{n \rightarrow \infty} \frac{{2n \choose t} 2^{2n}}{{2n \choose n} 2^{2n}} 
+= \lim\limits_{n \rightarrow \infty} \frac{{2n \choose t}}{{2n \choose n}}$.
+\newline
+\newline
+To see that the value of this limit never exceeds one, simply consider that the choose function is at a maximum at $2n \choose n$.
+Because this maximum occurs at $2n \choose n$, it follows that $2n \choose t$ can be at most $2n \choose n$ (when $t = n$) and so the 
+ratio $\frac{{2n \choose t}}{{2n \choose n}}$ cannot exceed one. This is enough to provide us with an upper bound on $P_t$.
+Namely, $P_t = O(P_n)$.
+\newline
+\newline
+Now we want to show that $P_t = \Omega(P_n)$ for $t = n + c \sqrt{n}$ with $-1 \leq c \leq 1$.
+\newline
+\newline
+$P_n = {{2n} \choose n} (\frac{1}{2})^{2n} = \frac{(2n)!}{t!(2n-t)!2^{2n}} = \Theta(\frac{e^{2n}(2n)^{2n} \sqrt{2n}}{e^{2n}\sqrt{n-c \sqrt{n}} \sqrt{n + c \sqrt{n}} (n - c \sqrt{n})^{n- c \sqrt{n}} (n+c \sqrt{n})^{n+c \sqrt{n}}}) \newline = \Theta(\frac{n^{2n}\sqrt{n}}{n \sqrt{1-c/\sqrt{n}} \sqrt{1 + c/\sqrt{n}} (n - c \sqrt{n})^{-c \sqrt{n}} (n+c \sqrt{n})^{c \sqrt{n}} ((n - c \sqrt{n})(n+c \sqrt{n}))^{n}}) \newline = \Theta(\frac{n^{2n}}{\sqrt{n} \sqrt{1-c^2/n} (n - c \sqrt{n})^{-c \sqrt{n}} (n+c \sqrt{n})^{c \sqrt{n}} (n^2 - c^2 n)^{n}})
+\newline = \Theta(\frac{1}{\sqrt{n} \sqrt{1-c^2/n} (n - c \sqrt{n})^{-c \sqrt{n}} (n+c \sqrt{n})^{c \sqrt{n}} (1 - c^2 / n)^{n}})
+\newline = \Theta(\frac{1}{\sqrt{n} \sqrt{1-c^2/n} (1 - c / \sqrt{n})^{-c \sqrt{n}} (1+c / \sqrt{n})^{c \sqrt{n}} (1 - c^2 / n)^{n}})$.
+\newline
+\newline
+Now, note that $1 + x \leq e^x \rightarrow \frac{1}{1+x} \geq e^x$. Because this term will appear in the denominator,
+we now switch to $\Omega$ to indicate that this is a lower bound. Note that $e^{c^2/2n}$ goes to one as $n$ grows.
+\newline
+\newline
+$ = \Omega(\frac{1}{\sqrt{n} e^{c^2/2n} e^{c^2} e^{c^2} e^{-c^2}}) = \Omega(\frac{1}{\sqrt{n}}) = \Omega(P_n)$.
+\newline
+\newline
+Thus, we have established that $P_t = O(P_n) = \Omega(P_n) \rightarrow P_t = \Theta(P_n)$ for all $t \in [n - \sqrt{n}, n + \sqrt{n}]$.
+
+% end Solution 
+
+\end{document}

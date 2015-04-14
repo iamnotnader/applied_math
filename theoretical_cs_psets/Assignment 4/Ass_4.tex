@@ -1,0 +1,515 @@
+% Use this template to write your solutions
+
+\documentclass[12pt]{article}
+
+% Set the margins
+%
+\setlength{\textheight}{8.5in}
+\setlength{\headheight}{.25in}
+\setlength{\headsep}{.25in}
+\setlength{\topmargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+
+% Macros
+\newcommand{\myN}{\hbox{N\hspace*{-.9em}I\hspace*{.4em}}}
+\newcommand{\myZ}{\hbox{Z}^+}
+\newcommand{\myR}{\hbox{R}}
+
+\newcommand{\myfunction}[3]
+{${#1} : {#2} \rightarrow {#3}$ }
+
+\newcommand{\myzrfunction}[1]
+{\myfunction{#1}{{\myZ}}{{\myR}}}
+
+
+% Formating Macros
+
+\newcommand{\myheader}[4]
+{\vspace*{-0.5in}
+\noindent
+{#1} \hfill {#3}
+
+\noindent
+{#2} \hfill {#4}
+
+\noindent
+\rule[8pt]{\textwidth}{1pt}
+
+\vspace{1ex} 
+}  % end \myheader 
+
+\newcommand{\myalgsheader}[0]
+{\myheader
+{ {\bf{COS 340}} }
+{ {\bf{Spring 2012}} }
+{ {\bf{Collaborator 1}} : last name, first name }
+{ {\bf{Collaborator 2}} : last name, first name}
+}
+
+% Running head (goes at top of each page, beginning with page 2.
+% Must precede by \pagestyle{myheadings}.
+\newcommand{\myrunninghead}[2]
+{\markright{{\it {#1}, {#2}}}}
+
+\newcommand{\myrunningalgshead}[2]
+{\myrunninghead{COS 340 }{{#1}}}
+
+\newcommand{\myrunninghwhead}[2]
+{\myrunningalgshead{Solution to HW {#1}, Problem {#2}}}
+
+\newcommand{\mytitle}[1]
+{\begin{center}
+{\large {\bf {#1}}}
+\end{center}}
+
+\newcommand{\myhwtitle}[3]
+{\begin{center}
+{\large {\bf Solution to HW {#1}, Problem {#2}}}\\
+\medskip 
+{\it {#3}} % Name goes here
+\end{center}}
+
+\newcommand{\mysection}[1]
+{\noindent {\bf {#1}}}
+
+%%%%%% Begin document with header and title %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{4}{1}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+Consider two hypothetical students Alpha and Beta. Suppose each of them takes 36 courses. $X_i$ is an indicator random variable that is $1$ if 
+Alpha gets an A in the $i_{th}$ course. Similarly, $Y_i$ is an indicator random variable that is $1$ if Beta gets an A in the $i_{th}$ course.
+Let $X = \sum\limits_{i = 1}^{36} X_i$ and $Y = \sum\limits_{i = 1}^{36} Y_i$. Suppose that $P[X_i = 1] = .8$ and $P[Y_i = 1] = .6$ for all $i$.
+Further, assume that all the $X_i$ and $Y_i$ variables are independent of each other.
+\newline
+\newline
+1. Compute $E[X-Y]$ and $Var[X-Y]$.
+\newline\newline
+$E[X - Y] = E[X] - E[Y] = E[\sum\limits_{i=1}^{36} X_i] - E[\sum\limits_{i = 1}^{36} Y_i] = \sum\limits_{i=1}^{36} E[X_i] - \sum\limits_{i=1}^{36} E[Y_i] = $
+\newline
+$\sum\limits_{i=1}^{36} E[X_1] - \sum\limits_{i=1}^{36} E[Y_1] = 36 \times .8 - 36 \times .6 = 7.2$.
+\newline
+\newline
+by linearity of expectation and because all the $X_i$ are identically distributed and the $Y_i$ are identically distributed.
+\newline
+\newline
+Note that $E[XY] = E[X]E[Y]$ because $X$ and $Y$ are independent of each other, and that $Var[\sum\limits_{i=1}^{36} X_i] = \sum\limits_{i=1}^{36} Var[X_i]$
+because the $X_i$ are independent of each other. The same goes for the variance of the $Y_i$. Finally, note that, because the $X_i$ are identically distributed
+and the $Y_i$ are identically distributed, that $Var[X_i] = Var[X_1]$ for all $i$ for both the $X_i$ and the $Y_i$.
+\newline
+\newline
+$Var[X - Y] = E[(X - Y)^2] - E[X - Y]^2 = 
+\newline
+E[X^2 - 2XY + Y^2] - E[X]^2 + 2 E[X]E[Y] - E[Y]^2 =
+\newline
+E[X^2] - 2 E[XY] + E[Y^2] - E[X]^2 + 2E[X]E[Y] - E[Y]^2 =
+\newline
+E[X^2] - 2E[X]E[Y] + E[Y^2] - E[X]^2 + 2E[X]E[Y] - E[Y]^2 = $
+\newline
+$E[X^2] - E[X]^2 + E[Y^2] - E[Y]^2 = Var[X] + Var[Y] = Var[\sum\limits_{i=1}^{36} X_i] + Var[\sum\limits_{i=1}^{36} Y_i] = 
+\newline
+\sum\limits_{i=1}^{36} Var[X_i] + \sum\limits_{i=1}^{36} Var[Y_i] = 36 \times Var[X_1] + 36 \times Var[Y_1] =
+\newline
+36 \times (E[X_1^2] - E[X_1]^2 + E[Y_1^2] - E[Y_1]^2) = 
+\newline
+36 \times ((.8 \times 1^2) - (.8 \times 1)^2 + (.6 \times 1^2) - (.6 \times 1)^2) = 14.4$
+\newline
+\newline
+Use the Chebyshev inequality to give an upper bound on $P[X \leq Y]$. (i.e. the probability that Alpha gets at most as many A's as Beta gets.)
+\newline
+\newline
+Let $W \sim X-Y$ and let $\sigma = \sqrt{Var[W]}$. Then, by Chebyshev, we have:
+\newline
+\newline
+$P[|W - E[W]| \geq (E[W]/\sigma) \sigma] \leq (\sigma/E[W])^2 
+\newline\newline
+\rightarrow P[W - E[W] \geq (E[W]/\sigma) \sigma] + P[E[W] - W \geq (E[W]/\sigma) \sigma] \leq (\sigma/E[W])^2
+\newline\newline
+\rightarrow P[E[W] - W \geq E[W]] \leq (\sigma/E[W])^2 - P[E[W] - W \geq (E[W]/\sigma) \sigma]
+\newline\newline
+\rightarrow P[- W \geq 0] \leq (\sigma/E[W])^2 - P[E[W] - W \geq (E[W]/\sigma) \sigma]
+\newline\newline
+\rightarrow P[Y - X \geq 0] \leq (\sigma/E[W])^2 - P[E[W] - W \geq (E[W]/\sigma) \sigma]
+\newline\newline
+\rightarrow P[X - Y \leq 0] \leq (\sigma/E[W])^2 - P[E[W] - W \geq (E[W]/\sigma) \sigma]
+\newline\newline
+\rightarrow P[X \leq Y] \leq (\sigma/E[W])^2 - P[E[W] - W \geq (E[W]/\sigma) \sigma]
+\newline\newline
+\rightarrow P[X \leq Y] \leq (\sigma/E[W])^2 = (\sqrt{Var[X-Y]}/E[X-Y])^2 = (14.4/51.84) = .278
+\newline\newline
+\rightarrow P[X \leq Y] \leq .278$.
+\newline\newline
+2. Use Chernoff bounds for $X$ to give an upper bound on $P[X \leq .6 \times 36]$. (i.e. the probability that Alpha gets an A in at most $60\%$ of the
+36 courses.)
+\newline\newline
+$P[X \leq (1 - \delta) E[X]] \leq e^{-\delta^2 E[X] / 2}
+\newline
+.6 \times 36 = (1 - \delta) E[X] \rightarrow \delta = 1 - .6 \times 36 / E[X] = 1 - .6/.8 = .25
+\newline
+\rightarrow P[X \leq .6 \times 36] \leq e^{-.25^2 \times .8 \times 36 / 2} = .407
+\newline
+\newline
+\rightarrow P[X \leq .6 \times 36] \leq .407$.
+\newline\newline
+3. Let $Z_i = (1-X_i)$ and let $Z = \sum\limits_{i=1}^{36} Z_i$. Apply Chernoff bounds to get an upper bound on $P[Z \geq .4*36]$.
+\newline\newline
+$P[Z \geq c \times E[Z]] \leq e^{-(c \ln c - c + 1)\times E[Z]}
+\newline
+.4 \times 36 = c \times E[Z] \rightarrow c = .4 \times 36 / E[Z].
+\newline
+\newline
+E[Z] = E[\sum\limits_{i = 1}^{36} (1 - X_i)] = E[36 - \sum\limits_{i = 1}^{36} X_i] = 36 - E[\sum\limits_{i = 1}^{36} X_i] = 
+\newline
+36 - \sum\limits_{i=1}^{36} E[X_1] = 36 - 36*.8 = 7.2.
+\newline
+\newline
+P[Z \geq .4 \times .36] \leq e^{-(2 \ln 2 - 2 + 1)\times E[Z]} = .062
+\rightarrow P[Z \geq .4 \times 36] \leq .062$
+% end Solution 
+
+\pagebreak
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{4}{2}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+$n$ men go to a party and check their hats in. When they return, the hats are returned to them in random order. Let $X$ be the number
+of men who get their original hats back. 
+\newline
+\newline
+1. Compute $E[X]$ and $Var[X]$.
+\newline\newline
+Let $X_i$ be the event that the $i_{th}$ man gets his hat back. Specifically, let $X_i$ be an indicator random variable that is $1$
+if the $i_{th}$ man gets his hat back and $0$ otherwise. Then, by linearity of expectation, for $E[X]$ we have:
+\newline
+$E[X] = E[\sum\limits_{i=1}^{n} X_i] = \sum\limits_{i=1}^{n} E[X_i] = n \times 1/n = 1$.
+\newline
+\newline
+For variance, we do a similar calculation:
+\newline
+$Var[X] = Var[\sum\limits_{i=1}^{n} X_i] = E[(\sum\limits_{i=1}^{n} X_i)^2] - E[\sum\limits_{i=1}^{n} X_i]^2$
+\newline
+Note that $(\sum\limits_{i=1}^{n} X_i)^2 = \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} X_i \times X_j$ and that, therefore:
+\newline
+$E[(\sum\limits_{i=1}^{n} X_i)^2] = E[\sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} X_i \times X_j] = \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} E[X_i \times X_j]$
+\newline
+by linearity of expectation.
+\newline
+\newline
+Now, we compute $E[X_i \times X_j]$ for when $i = j$ and for when $i \neq j$:
+\newline
+$E[X_i \times X_i] = 1/n \times (1)(1) + (n-1)/n \times (0)(0) = 1/n
+\newline
+E[X_i \times X_j] = \frac{1}{n(n-1)} \times (1)(1) + 2 \times \frac{n-2}{n(n-1)} (1)(0) + \frac{n^2 - 3n + n^2}{n(n-1)} \times (0)(0) = \frac{1}{n(n-1)}$
+\newline
+\newline
+So, computing our sum over $E[X_i \times X_j]$, we have: 
+\newline
+$\sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} E[X_i \times X_j] = n \times E[X_i \times X_i] + (n^2 - n) \times E[X_i \times X_j]$ for $i \neq j$ 
+\newline
+$= n (1/n) + (n(n-1))/(n(n-1)) = 2$,
+\newline
+\newline
+which brings us to our final expression:
+\newline
+$Var[X] = \sum\limits_{i=1}^{n} \sum\limits_{j=1}^{n} E[X_i \times X_j] - E[\sum\limits_{i=1}^{n} X_i]^2 = 2 - 1^2 = 1$.
+\newline\newline
+2. Use the Chebyshev inequality to give an upper bound on $P[X \geq k]$.
+\newline\newline
+Let $\sigma = \sqrt{Var[X]}$:
+\newline
+$P[|X - E[X]| \geq c \times \sigma] \leq 1/c^2
+\newline\newline
+\rightarrow P[X - E[X] \geq c \times \sigma] + P[E[X] - X \geq c \times \sigma] \leq 1/c^2
+\newline\newline
+\rightarrow P[X \geq c \times \sigma + E[X]] \leq 1/c^2 - P[E[X] - X \geq c \times \sigma]
+\newline\newline
+\rightarrow P[X \geq c \times \sigma + E[X]] \leq 1/c^2$.
+\newline\newline
+Solving for $c$ in terms of $k$ we get:
+\newline
+$k = c \times \sigma + E[X] \rightarrow c = (k - E[X])/\sigma$.
+\newline
+\newline
+Bringing us to the final answer:
+\newline
+$P[X \geq k] \leq Var[X]/(k - E[X])^2 = 1 / (k-1)^2$
+% end Solution 
+
+\pagebreak
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{4}{3}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+A scientist is running an experiment on growing red and yellow spores in a petri dish. At any time moment a yellow spore
+may divide with an equal probability into either (2 yellow and 2 red) or (3 yellow and 1 red) spores. A red spore may 
+divide with an equal probability into either (5 red) or (4 yellow and 1 red) spores. The experiment starts with 5000 red
+and 3000 yellow spores in the dish.
+\newline
+The scientist terminates the experiment by killing all the spores in the dish once the red spore count reaches 25000. What
+is the expected number of yellow spores just before the experiment is terminated?
+\newline
+\newline
+In order to figure this out, we must first formalize this process as a Martingale process, $X_t$. 
+\newline
+Let $X_t = $ (number of red spores) - (number of yellow spores) after the $t_{th}$ spore division. Note that $t$ here does not
+represent time directly, but rather represents the number of divisions since the process began.
+\newline
+\newline
+In order to show that $X_t$ is a Martingale process, we need to show that, for all $t$, 
+\newline
+$E[X_{t+1} | X_0, ..., X_t] = X_t$. Recall
+that $X_t$ denotes the state of the system just after the $t_{th}$ spore division.
+\newline
+\newline
+Two events can occur just after $X_t$: either a red spore can choose to divide, or a yellow spore can choose to divide. These
+are the only possibilities and so, by conditioning, we get:
+\newline
+\newline
+$E[X_{t+1} | X_0, ..., X_t] 
+\newline = E[X_{t+1} | X_0, ..., X_t,$ yellow spore divides just after $t] P[$yellow spore divides just after $t]
+\newline + E[X_{t+1} | X_0, ..., X_t,$ red spore divides just after $t] P[$red spore divides just after $t]$.
+\newline
+\newline
+But, we can note a symmetry in the expectations. 
+\newline
+\newline
+\textbf{1) If a yellow spore divides, we have:}
+\newline
+$E[X_{t+1} | X_0, ..., X_t,$ yellow spore divides just after $t] \newline = E[X_{t+1} | X_t, ...] $ because $X_{t+1}$ is clearly independent of $X_0, ..., X_{t-1}$ given $X_t$$
+ \newline= X_t + E[$red spores generated from yellow division - yellow spores generated from yellow division$] 
+\newline= X_t + E[$red spores generated from a yellow division$] - E[$yellow spores generated from a yellow division$]$.
+\newline
+\newline
+$E[$number of spores after yellow division$] = 1/2(1Y + 2R) + 1/2(2Y + 1R) = 1.5Y + 1.5R \newline \rightarrow E[$yellow spores generated$] = 1.5, E[$red spores generated$] = 1.5$.
+\newline
+\newline
+$\rightarrow E[X_{t+1} | X_0, ..., X_t,$ yellow spore divides just after $t]
+\newline = X_t + E[$red spores generated from a yellow division$] - E[$yellow spores generated from a yellow division$]
+\newline = X_t + 1.5 - 1.5 = X_t$.
+\newline
+\newline
+\textbf{2) If a red spore divides, we have:}
+\newline
+$E[X_{t+1} | X_0, ..., X_t,$ red spore divides just after $t] \newline = E[X_{t+1} | X_t, ...] $ because $X_{t+1}$ is clearly independent of $X_0, ..., X_{t-1}$ given $X_t$$
+\newline= X_t + E[$red spores generated from red division - yellow spores generated from red division$] 
+\newline= X_t + E[$red spores generated from a red division$] - E[$yellow spores generated from a red division$]$.
+\newline
+\newline
+$E[$number of spores after red division$] = 1/2(4Y + 0R) + 1/2(0Y + 4R) = 2Y + 2R \newline \rightarrow E[$yellow spores generated$] = 2, E[$red spores generated$] = 2$.
+\newline
+\newline
+$\rightarrow E[X_{t+1} | X_0, ..., X_t,$ red spore divides just after $t]
+\newline = X_t + E[$red spores generated from a red division$] - E[$yellow spores generated from a red division$]
+\newline = X_t + 2 - 2 = X_t$.
+\newline
+\newline
+\textbf{Plugging these into our original equation: }
+\newline
+$E[X_{t+1} | X_0, ..., X_t] 
+\newline = E[X_{t+1} | X_0, ..., X_t,$ yellow spore divides just after $t] P[$yellow spore divides just after $t]
+\newline + E[X_{t+1} | X_0, ..., X_t,$ red spore divides just after $t] P[$red spore divides just after $t]
+\newline
+\newline
+= X_t P[$yellow spore divides just after t$] + X_t P[$red spore divides just after t$]
+\newline
+= X_t$ because $P[yellow] + P[red]$ sum to one.
+\newline
+\newline
+Now, finally having shown that this is indeed a Martingale, we choose our stopping criterion $T$ to be the point at which 
+the number of red spores is equal to 25000. By the optimal stopping theorem, we have:
+\newline
+\newline
+$E[X_T] = X_0 = 2000$ and combine this with the definition of $X_T$$
+\newline
+\rightarrow E[X_T] = E[$\# red spores at interval T$] - E[$\# yellow spores at interval T$]
+\newline = 25000 - E[$\# yellow spores at T$] = 2000 
+\newline \rightarrow E[$\# yellow spores at T$] = 25000 - 2000 = 23000$.
+
+% end Solution 
+
+\pagebreak
+
+\myalgsheader
+
+\pagestyle{plain}
+
+\myhwtitle{4}{4}{Al-Naji, Nader}
+% Example : \myhwtitle{1}{4}{Your name here}
+
+\bigskip
+
+% begin Solution 
+In order to implement a counter capable of counting from 1 to $N$, at least $\log N$ bits are needed. In some cases,
+allowing this number of bits is too expensive. In this question, you will see how to implement a ``probabilistic counter''
+- a counter that counts with small errors, and uses only $\theta \log \log N$ bits.
+\newline
+\newline
+The counter is defined as follows:
+\newline
+	- Initially the counter is zero.\newline
+	- An increment operation is performed as follows: If the current value of the counter is $j$, increase the counter value by 
+	1 with probability $1/2^j$, and leave the counter in its current state with probability $1 - 1/2^j$.
+\newline
+\newline
+Let $C_k$ be a random variable denoting the value of the counter after $k$ increment operations have occurred.
+\newline
+\newline
+\textbf{Part A} Suppose that $k$ increment operations have been performed. Our first goal is to show that the actual number of
+increment operations is well approximated by $2^{C_k}$, at least in expectation. We will prove: $E[2^{C_k}] = k + 1$.
+\newline
+\newline
+\textbf{Step 1: } Define, for $i > 0$, the random variable $X_i := 2^{C_i} - 2^{C_{i-1}}$. Show that for any value
+of t: $E[X_i | C_{i-1} = t] = 1$.
+\newline
+\newline
+Note that given $C_{i-1} = t$, $C_i$ can only take on two values. Namely, if an increase occurs when incrementing the
+previous value (happens with probability $1/2^t$), then $C_i = t+1$. Otherwise, if an increase does not occur (happens with
+probability $1 - 1/2^t$), then $C_i = t$. We can now compute the expectation directly.
+\newline
+\newline
+$E[X_i | C_{i-1} = t] = (2^{t+1} - 2^t) P[C_i = t+1 | C_{i-1} = t] + (2^t - 2^t) P[C_i = t | C_{i-1} = t] 
+\newline = (2^{t+1} - 2^t)(1/2^t) + (0)(1 - 1/2^t) = (2 - 1) = 1$. 
+\newline
+\newline
+\textbf{Step 2: } Conclude that $E[X_i] = 1$
+\newline
+\newline
+$E[X_i] = \sum\limits_{t=0}^{\infty} E[X_i | C_{i-1} = t] P[C_{i-1} = t] = 1 \sum\limits_{t=0}^{\infty} P[C_{i-1} = t] = 1$.
+\newline
+Note that $P[C_{i-1} = t]$ is a probability distribution over $t$ and therefore: $\sum\limits_{t=0}^{\infty} P[C_{i-1} = t] = 1$.
+\newline
+\newline
+\textbf{Step 3: } Conclude that $E[2^{C_k}] = k+1$.
+\newline
+\newline
+Note the following recursive formulation:
+\newline
+$E[2^{C_k}] = E[X_k] + E[2^{C_{k-1}}] = 1 + E[2^{C_{k-1}}] 
+\newline
+$And, therefore, we have:
+\newline$
+E[2^{C_k}] = 1 + ... + 1 $(repeated k times)$ + E[2^{C_0}] = k+1$.
+\newline
+\newline
+\textbf{Part B} Our next goal is to calculate the variance of $2^{C_k}$.
+\newline
+\newline
+\textbf{Step 1: } In order to calculate the variance, we must first compute $E[(2^{C_k})^2] = E[4^{C_k}]$. Define, for $i > 0$,
+the random variable: $Y_i = 4^{C_i} - 4^{C_{i-1}}$. Show that $E[Y_i | C_{i-1} = t] = 3\cdot 2^t$.
+\newline
+\newline
+Again, note that the value of $C_i$ conditioned on $C_{i-1} = t$ can be either $t+1$ with probability $1/2^t$ or $t$ with
+probability $1 - 1/2^t$. Thus, computing the expectation we get:
+\newline
+\newline
+$E[Y_i | C_{i-1} = t] = (4^{t+1} - 4^t)(1/2^t) + (4^t - 4^t)(1 - 1/2^t) = (2^{2t + 2} - 2^{2t})(1/2^t) + 0
+\newline = 2^{t+2} - 2^t = 4\cdot 2^t - 1 \cdot 2^t = 3 \cdot 2^t$.
+\newline
+\newline
+\textbf{Step 2: } Conclude that $E[Y_i] = 3 i$.
+\newline
+\newline
+Using our result from step 3 in part A above, we have:
+\newline
+$E[Y_i] = \sum\limits_{t = 0}^{\infty} E[Y_i | C_{i-1} = t] P[C_{i-1} = t] = 3 \cdot \sum\limits_{t = 0}^{\infty} 2^t P[C_{i-1} = t] = 3 \cdot E[2^{C_{i-1}}] = 3 \cdot i$.
+\newline
+\newline
+\textbf{Step 3: } Conclude that the variance of $2^{C_k} $ is equal to $ 3/2 \cdot k \cdot (k+1) + 1 - (k+1)^2$.
+\newline
+\newline
+Again, note the following recursive relation; note we use the formula $\sum\limits_{i=1}^{n} i = n(n+1)/2$:
+\newline
+$E[4^{C_k}] = E[Y_k] + E[4^{C_{k-1}}] = 3i + 3(i-1) + ... + 3(2) + 3(1) + E[4^{C_0}] 
+\newline \rightarrow E[(2^{C_k})^2] = \frac{3 k (k+1)}{2} + 1$
+\newline
+And recall that $E[2^{C_k}] = (k+1)$. So, as our final answer, we have:
+\newline
+\newline
+$Var[2^{C_k}] = E[(2^{C_k})^2] - E[2^{C_k}]^2 = \frac{3 k (k+1)}{2} + 1 - (k+1)^2$.
+\newline
+\newline
+\textbf{Part C: } The last goal is to show concentration around the mean. Suppose we have $10$ such counters. Let T
+be the average value of $2^{C_k}$ over all counters. Show that with probability at least $80\%$, T is in the range $(k+1)\cdot (1 \pm .5)$.
+\newline
+Hint: Compute the variance T.
+\newline
+\newline
+First, compute expected value and variance of T. Let $V_i$ denote the value of the $i_{th}$ counter after $k$ iterations. 
+We will assume the counters are independent.
+\newline
+\newline
+$E[T] = E[\sum\limits_{i=1}^{10} V_i / 10] = 1/10 E[\sum\limits_{i=1}^{10} V_i] = 1/10 \sum\limits_{i=1}^{10} E[V_i] = 1/10 \cdot 10 \cdot E[V_1] = E[V_1] = k+1$.
+$Var[T] = Var[\sum\limits_{i=1}^{10} V_i / 10] = \frac{1}{100}\sum\limits_{i=1}^{10} Var[V_i] = \frac{1}{10} (3/2 \cdot k \cdot (k+1) + 1 - (k+1)^2)
+\newline = \frac{1}{10} (3/2k^2 + 3/2k + 1 - k^2 - 2k - 1) = \frac{1}{10} (1/2k^2 - 1/2k) = (k^2 - k)/20$.
+\newline
+\newline
+Note the use of the independence of the counters and the fact that $Var[aX] = a^2 Var[X]$ above. Now, armed with the expected value and the variance, we can apply Chebyshev's inequality.
+\newline
+\newline
+$P[|T-E[T]| \geq c\cdot \sigma] \leq 1/c^2
+\newline \rightarrow P[|T - (k+1)| \geq c \cdot \sigma] \leq 1/c^2
+\newline \rightarrow P[T - (k+1) \geq c\cdot \sigma] + P[(k+1) - T \geq c\cdot \sigma] \leq 1/c^2
+\newline \rightarrow P[T \geq c\cdot \sigma + (k+1)] + P[T \leq (k+1) - c \cdot \sigma] \leq 1/c^2$.
+\newline
+\newline
+Now we must pick the value of c such that the right-hand sides of the inequalities enclosed in the probabilities are
+(k+1)(1.5) and (k+1)(.5). We can do this by setting them equal and solving for c:
+\newline
+\newline
+For the upper bound:
+\newline
+$c\cdot \sigma + (k+1) = (k+1)(3/2) \rightarrow c\cdot \sigma = (3/2)(k+1) - (k+1) 
+\newline \rightarrow c = (k+1)/(2\sigma)$
+\newline
+\newline
+This value of c, happily, works for the lower bound as well:
+\newline
+$(k+1) - c \cdot \sigma = (1/2)(k+1) \rightarrow -c \cdot \sigma = (-1/2)(k+1) 
+\newline \rightarrow c = (k+1)/(2\sigma)$
+\newline
+\newline
+Thus, if $P[|T - E[T]| \geq (k+1)/2]$ then T is within the range $(k+1)(1 \pm .5)$ and, using the Chebyshev bound, we get:
+\newline
+\newline
+$P[|T - E[T]| \geq (k+1)/2] = P[$T within range $(k+1)(1 \pm .5)] \leq ((2\sigma)/(k+1))^2 
+\newline = (4 Var[T])/(k+1)^2 = \frac{4(k^2 - k)}{20(k^2 + 2k + 1)} = \frac{1}{5} \cdot \frac{(k^2 - k)}{(k^2 + 2k + 1)} \leq \frac{1}{5}
+\newline
+\newline \rightarrow P[$T within range $(k+1)(1 \pm .5)] \leq \frac{1}{5}$.
+\newline
+\newline
+Thus, with probability at least $80$\%, T is within the range $(k+1)(1 \pm .5)$.
+
+
+
+
+% end Solution 
+
+
+
+
+\end{document}
