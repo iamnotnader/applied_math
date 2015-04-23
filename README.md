@@ -1,1 +1,1 @@
-A paper I wrote on music clustering algorithms, a tutorial paper on the minimum feedback arcset problem, and some problem sets from a theoretical CS course.
+A paper I wrote on music clustering algorithms, a tutorial paper on the minimum feedback arcset problem, some problem sets from a theoretical CS course, and some problem sets from a course on Analytic Combinatorics.
